@@ -1,5 +1,4 @@
 Gestão Municipal
 
 Desenvolvido por:
-Deyvid
-João Paulo
+Deyvid / João Paulo
