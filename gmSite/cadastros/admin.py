@@ -6,6 +6,11 @@ from .models import Bairro
 from .models import Endereco
 from .models import TipoTelefone
 from .models import Telefone
+from .models import Eventos
+from .models import Status
+from .models import TipoLotacao
+from .models import Lotacao
+from .models import Chamado
 
 
 
@@ -15,3 +20,8 @@ admin.site.register(Bairro)
 admin.site.register(Endereco)
 admin.site.register(TipoTelefone)
 admin.site.register(Telefone)
+admin.site.register(Eventos)
+admin.site.register(Status)
+admin.site.register(TipoLotacao)
+admin.site.register(Lotacao)
+admin.site.register(Chamado)
