@@ -82,9 +82,10 @@ class Lotacao(models.Model):
     idTipoLotacao = models.ForeignKey(TipoLotacao, on_delete=models.CASCADE)
     idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
     idOrgao = models.ForeignKey(Orgao, on_delete=models.CASCADE)
+    observacao = models.CharField(max_length=200)
     
     def __str__(self):
-        return self.idTipoLotacao
+        return self.observacao
 
 
 class Chamado(models.Model):
@@ -92,8 +93,8 @@ class Chamado(models.Model):
     idEvento = models.ForeignKey(Eventos, on_delete=models.CASCADE)
     idEndereco = models.ForeignKey(Endereco, on_delete=models.CASCADE)
     idStatus = models.ForeignKey(Status, on_delete=models.CASCADE)
-    dataAbertura = models.CharField(max_length=10)
-    dataFechamento = models.CharField(max_length=10)
+    dataAbertura = models.DateField(default=None)
+    dataFechamento = models.DateField(default=None, blank=True, null=True)
     observacao = models.CharField(max_length=200)
 
     def __str__(self):
