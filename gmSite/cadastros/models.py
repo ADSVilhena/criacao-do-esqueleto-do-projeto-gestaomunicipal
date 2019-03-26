@@ -36,7 +36,7 @@ class Endereco(models.Model):
     idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.nome
+        return self.idPessoa.nome + " - " + self.nome + " - " + self.idBairro.nome
 
 
 class TipoTelefone(models.Model):
@@ -53,7 +53,7 @@ class Telefone(models.Model):
 
 
     def __str__(self):
-        return self.numero
+        return self.idPessoa.nome + " - " + self.numero
 
 
 class Eventos(models.Model):
@@ -85,7 +85,7 @@ class Lotacao(models.Model):
     observacao = models.CharField(max_length=200)
     
     def __str__(self):
-        return self.observacao
+        return self.idPessoa.nome + " - " + self.idOrgao.nome
 
 
 class Chamado(models.Model):
@@ -98,4 +98,4 @@ class Chamado(models.Model):
     observacao = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.observacao
+        return self.idPessoa.nome + " - " + self.idEvento.descricao + " - " + self.idEndereco.nome
