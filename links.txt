@@ -1,0 +1,3 @@
+#Tipos de dados do Django
+
+https://www.webforefront.com/django/modeldatatypesandvalidation.html
