@@ -1,0 +1,18 @@
+cadastro
+	Pessoa
+	Bairro
+	Endereco
+	TipoTelefone
+	Telefone
+	
+	
+cadastroOrgao
+	Orgao
+	Eventos
+	Status
+	TipoLotacao
+	Lotacao
+	
+
+chamado
+
