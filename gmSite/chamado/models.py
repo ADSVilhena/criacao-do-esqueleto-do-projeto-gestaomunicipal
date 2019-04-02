@@ -1,8 +1,8 @@
 from django.db import models
 from cadastros.models import Pessoa
 from cadastros.models import Endereco
-from cadastros.models import Eventos
-from cadastros.models import Status
+from orgao.models import Eventos
+from orgao.models import Status
 
 
 # Create your models here.

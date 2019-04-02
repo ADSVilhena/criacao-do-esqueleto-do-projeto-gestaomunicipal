@@ -36,7 +36,7 @@ class Endereco(models.Model):
     idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE,verbose_name="PESSOA")
 
     def __str__(self):
-        return self.idPessoa.nome + " - " + self.nome + " - " + self.idBairro.nome
+        return  self.nome + " - " + self.idBairro.nome
 
 
 class TipoTelefone(models.Model):
@@ -56,46 +56,3 @@ class Telefone(models.Model):
         return self.idPessoa.nome + " - " + self.numero
 
 
-class Eventos(models.Model):
-    descricao = models.CharField('SERVIÇO',max_length=50)
-    idOrgao = models.ForeignKey(Orgao, on_delete=models.CASCADE,verbose_name="ÓRGÃO")
-
-    def __str__(self):
-        return self.descricao
-
-
-class Status(models.Model):
-    descricao = models.CharField('STATUS',max_length=50)
-
-    def __str__(self):
-        return self.descricao
-
-
-class TipoLotacao(models.Model):
-    descricao = models.CharField('TIPO LOTAÇÃO',max_length=50)
-
-    def __str__(self):
-        return self.descricao
-
-
-class Lotacao(models.Model):
-    idTipoLotacao = models.ForeignKey(TipoLotacao, on_delete=models.CASCADE,verbose_name="TIPO LOTAÇÃO")
-    idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE, verbose_name="PESSOA")
-    idOrgao = models.ForeignKey(Orgao, on_delete=models.CASCADE,verbose_name="ÓRGÃO")
-    observacao = models.CharField('OBSERVAÇÃO',max_length=200)
-    
-    def __str__(self):
-        return self.idPessoa.nome + " - " + self.idOrgao.nome
-
-
-class Chamado(models.Model):
-    idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE,verbose_name="PESSOA")
-    idEvento = models.ForeignKey(Eventos, on_delete=models.CASCADE,verbose_name="SERVIÇO")
-    idEndereco = models.ForeignKey(Endereco, on_delete=models.CASCADE,verbose_name="ENDEREÇO")
-    idStatus = models.ForeignKey(Status, on_delete=models.CASCADE,verbose_name="STATUS")
-    dataAbertura = models.DateField('ABERTO EM',default=None)
-    dataFechamento = models.DateField('CONCLUÍDO EM',default=None, blank=True, null=True)
-    observacao = models.CharField('OBSERVAÇÃO',max_length=200)
-
-    def __str__(self):
-        return self.idPessoa.nome + " - " + self.idEvento.descricao + " - " + self.idEndereco.nome + " - " + self.idEndereco.numero

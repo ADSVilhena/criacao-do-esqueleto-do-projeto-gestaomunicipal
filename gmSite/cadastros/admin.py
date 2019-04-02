@@ -1,16 +1,15 @@
 from django.contrib import admin
 
 from .models import Pessoa
-from .models import Orgao
+from .models import Orgao 
 from .models import Bairro
 from .models import Endereco
 from .models import TipoTelefone
 from .models import Telefone
-from .models import Eventos
-from .models import Status
-from .models import TipoLotacao
-from .models import Lotacao
-from .models import Chamado
+from orgao.models import Eventos
+from orgao.models import Status
+from orgao.models import TipoLotacao
+from orgao.models import Lotacaos
 
 
 class LotacaoAdmin(admin.ModelAdmin):
@@ -29,4 +28,4 @@ admin.site.register(Telefone)
 admin.site.register(Eventos)
 admin.site.register(Status)
 admin.site.register(TipoLotacao)
-admin.site.register(Lotacao,LotacaoAdmin)
+admin.site.register(Lotacaos,LotacaoAdmin)

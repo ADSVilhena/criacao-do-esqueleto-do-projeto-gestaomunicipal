@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cadastros.apps.CadastrosConfig',
     'chamado.apps.ChamadoConfig',
+    'orgao.apps.OrgaoConfig',
 ]
 
 MIDDLEWARE = [
