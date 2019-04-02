@@ -3,53 +3,53 @@ from django.db import models
 # Models de cadastro
 
 class Pessoa(models.Model):
-    nome = models.CharField(max_length=150)
-    cpf = models.CharField(max_length=11)
-    senha = models.CharField(max_length=11)
-    email = models.CharField(max_length=100)
+    nome = models.CharField('PESSOA',max_length=150)
+    cpf = models.CharField('CPF',max_length=11)
+    senha = models.CharField('SENHA',max_length=11)
+    email = models.CharField('E-MAIL',max_length=100)
 
     def __str__(self):
         return self.nome
 
 
 class Orgao(models.Model):
-    nome = models.CharField(max_length=200)
-    cnpj = models.CharField(max_length=14)
-    descricao = models.CharField(max_length=100)
+    nome = models.CharField('ÓRGÃO',max_length=200)
+    cnpj = models.CharField('CNPJ',max_length=14)
+    descricao = models.CharField('DESCRIÇÃO',max_length=100)
 
     def __str__(self):
         return self.nome
  
 
 class Bairro(models.Model):
-    nome = models.CharField(max_length=30)
+    nome = models.CharField('BAIRRO',max_length=30)
 
     def __str__(self):
         return self.nome
 
 
 class Endereco(models.Model):
-    nome = models.CharField(max_length=100)
-    numero = models.CharField(max_length=5)
-    complemento = models.CharField(max_length=50)
-    idBairro = models.ForeignKey(Bairro, on_delete=models.CASCADE)
-    idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
+    nome = models.CharField('RUA',max_length=100)
+    numero = models.CharField('NÚMERO',max_length=5)
+    complemento = models.CharField('COMPLEMENTO',max_length=50)
+    idBairro = models.ForeignKey(Bairro, on_delete=models.CASCADE,verbose_name="BAIRRO")
+    idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE,verbose_name="PESSOA")
 
     def __str__(self):
         return self.idPessoa.nome + " - " + self.nome + " - " + self.idBairro.nome
 
 
 class TipoTelefone(models.Model):
-    descricao = models.CharField(max_length=20)
+    descricao = models.CharField('TIPO TELEFONE',max_length=20)
 
     def __str__(self):
         return self.descricao
 
 
 class Telefone(models.Model):
-    numero = models.CharField(max_length=11)
-    idTipoTelefone = models.ForeignKey(TipoTelefone, on_delete=models.CASCADE)
-    idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
+    numero = models.CharField('NÚMERO',max_length=11)
+    idTipoTelefone = models.ForeignKey(TipoTelefone, on_delete=models.CASCADE,verbose_name="TIPO TELEFONE")
+    idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE,verbose_name="PESSOA")
 
 
     def __str__(self):
@@ -57,45 +57,45 @@ class Telefone(models.Model):
 
 
 class Eventos(models.Model):
-    descricao = models.CharField(max_length=50)
-    idOrgao = models.ForeignKey(Orgao, on_delete=models.CASCADE)
+    descricao = models.CharField('SERVIÇO',max_length=50)
+    idOrgao = models.ForeignKey(Orgao, on_delete=models.CASCADE,verbose_name="ÓRGÃO")
 
     def __str__(self):
         return self.descricao
 
 
 class Status(models.Model):
-    descricao = models.CharField(max_length=50)
+    descricao = models.CharField('STATUS',max_length=50)
 
     def __str__(self):
         return self.descricao
 
 
 class TipoLotacao(models.Model):
-    descricao = models.CharField(max_length=50)
+    descricao = models.CharField('TIPO LOTAÇÃO',max_length=50)
 
     def __str__(self):
         return self.descricao
 
 
 class Lotacao(models.Model):
-    idTipoLotacao = models.ForeignKey(TipoLotacao, on_delete=models.CASCADE)
-    idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
-    idOrgao = models.ForeignKey(Orgao, on_delete=models.CASCADE)
-    observacao = models.CharField(max_length=200)
+    idTipoLotacao = models.ForeignKey(TipoLotacao, on_delete=models.CASCADE,verbose_name="TIPO LOTAÇÃO")
+    idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE, verbose_name="PESSOA")
+    idOrgao = models.ForeignKey(Orgao, on_delete=models.CASCADE,verbose_name="ÓRGÃO")
+    observacao = models.CharField('OBSERVAÇÃO',max_length=200)
     
     def __str__(self):
         return self.idPessoa.nome + " - " + self.idOrgao.nome
 
 
 class Chamado(models.Model):
-    idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
-    idEvento = models.ForeignKey(Eventos, on_delete=models.CASCADE)
-    idEndereco = models.ForeignKey(Endereco, on_delete=models.CASCADE)
-    idStatus = models.ForeignKey(Status, on_delete=models.CASCADE)
-    dataAbertura = models.DateField(default=None)
-    dataFechamento = models.DateField(default=None, blank=True, null=True)
-    observacao = models.CharField(max_length=200)
+    idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE,verbose_name="PESSOA")
+    idEvento = models.ForeignKey(Eventos, on_delete=models.CASCADE,verbose_name="SERVIÇO")
+    idEndereco = models.ForeignKey(Endereco, on_delete=models.CASCADE,verbose_name="ENDEREÇO")
+    idStatus = models.ForeignKey(Status, on_delete=models.CASCADE,verbose_name="STATUS")
+    dataAbertura = models.DateField('ABERTO EM',default=None)
+    dataFechamento = models.DateField('CONCLUÍDO EM',default=None, blank=True, null=True)
+    observacao = models.CharField('OBSERVAÇÃO',max_length=200)
 
     def __str__(self):
-        return self.idPessoa.nome + " - " + self.idEvento.descricao + " - " + self.idEndereco.nome
+        return self.idPessoa.nome + " - " + self.idEvento.descricao + " - " + self.idEndereco.nome + " - " + self.idEndereco.numero

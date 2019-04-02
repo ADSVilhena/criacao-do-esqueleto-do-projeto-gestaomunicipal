@@ -13,6 +13,14 @@ from .models import Lotacao
 from .models import Chamado
 
 
+class LotacaoAdmin(admin.ModelAdmin):
+    list_display = ('idOrgao','idPessoa','idTipoLotacao','observacao')
+    list_filter = ['idOrgao']
+
+class ChamadoAdmin(admin.ModelAdmin):
+    list_display = ('idPessoa', 'idEvento', 'idEndereco', 'idStatus', 'dataAbertura', 'dataFechamento', 'observacao')
+    list_filter = ['idStatus','idEndereco', 'idEvento', 'dataAbertura', 'dataFechamento']
+
 
 admin.site.register(Pessoa)
 admin.site.register(Orgao)
@@ -23,5 +31,5 @@ admin.site.register(Telefone)
 admin.site.register(Eventos)
 admin.site.register(Status)
 admin.site.register(TipoLotacao)
-admin.site.register(Lotacao)
-admin.site.register(Chamado)
+admin.site.register(Lotacao,LotacaoAdmin)
+admin.site.register(Chamado,ChamadoAdmin)
