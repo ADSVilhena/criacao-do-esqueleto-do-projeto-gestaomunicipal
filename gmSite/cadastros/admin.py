@@ -17,9 +17,7 @@ class LotacaoAdmin(admin.ModelAdmin):
     list_display = ('idOrgao','idPessoa','idTipoLotacao','observacao')
     list_filter = ['idOrgao']
 
-class ChamadoAdmin(admin.ModelAdmin):
-    list_display = ('idPessoa', 'idEvento', 'idEndereco', 'idStatus', 'dataAbertura', 'dataFechamento', 'observacao')
-    list_filter = ['idStatus','idEndereco', 'idEvento', 'dataAbertura', 'dataFechamento']
+
 
 
 admin.site.register(Pessoa)
@@ -32,4 +30,3 @@ admin.site.register(Eventos)
 admin.site.register(Status)
 admin.site.register(TipoLotacao)
 admin.site.register(Lotacao,LotacaoAdmin)
-admin.site.register(Chamado,ChamadoAdmin)
