@@ -9,17 +9,7 @@ class Pessoa(models.Model):
     email = models.CharField('E-MAIL',max_length=100)
 
     def __str__(self):
-        return self.nome
-
-
-class Orgao(models.Model):
-    nome = models.CharField('ÓRGÃO',max_length=200)
-    cnpj = models.CharField('CNPJ',max_length=14)
-    descricao = models.CharField('DESCRIÇÃO',max_length=100)
-
-    def __str__(self):
-        return self.nome
- 
+        return self.nome 
 
 class Bairro(models.Model):
     nome = models.CharField('BAIRRO',max_length=30)

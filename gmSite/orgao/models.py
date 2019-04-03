@@ -16,6 +16,9 @@ class Eventos(models.Model):
 
     def __str__(self):
         return self.descricao
+    class Meta:
+        verbose_name = "Evento"
+        verbose_name_plural = "Eventos"
 
 
 class Status(models.Model):
@@ -23,16 +26,21 @@ class Status(models.Model):
 
     def __str__(self):
         return self.descricao
-
+    class Meta:
+        verbose_name = "Status"
+        verbose_name_plural = "Status"
 
 class TipoLotacao(models.Model):
     descricao = models.CharField('TIPO LOTAÇÃO',max_length=50)
 
     def __str__(self):
         return self.descricao
+    class Meta:
+        verbose_name = "TipoLotacao"
+        verbose_name_plural = "TipoLotacao"
 
 
-class Lotacaos(models.Model):
+class Lotacao(models.Model):
     idTipoLotacao = models.ForeignKey(TipoLotacao, on_delete=models.CASCADE,verbose_name="TIPO LOTAÇÃO")
     idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE, verbose_name="PESSOA")
     idOrgao = models.ForeignKey(Orgao, on_delete=models.CASCADE,verbose_name="ÓRGÃO")
@@ -40,3 +48,7 @@ class Lotacaos(models.Model):
     
     def __str__(self):
         return self.idPessoa.nome + " - " + self.idOrgao.nome
+
+    class Meta:
+        verbose_name = "Lotação"
+        verbose_name_plural = "Lotação"

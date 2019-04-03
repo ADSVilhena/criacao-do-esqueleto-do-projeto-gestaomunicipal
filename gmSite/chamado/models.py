@@ -18,3 +18,7 @@ class Chamados(models.Model):
 
     def __str__(self):
         return self.idPessoa.nome + " - " + self.idEvento.descricao + " - " + self.idEndereco.nome + " - " + self.idEndereco.numero
+
+    class Meta:
+        verbose_name = "Chamado"
+        verbose_name_plural = "Chamados"
