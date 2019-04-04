@@ -16,6 +16,7 @@ class Eventos(models.Model):
 
     def __str__(self):
         return self.descricao
+
     class Meta:
         verbose_name = "Evento"
         verbose_name_plural = "Eventos"
@@ -26,6 +27,7 @@ class Status(models.Model):
 
     def __str__(self):
         return self.descricao
+        
     class Meta:
         verbose_name = "Status"
         verbose_name_plural = "Status"
@@ -35,6 +37,7 @@ class TipoLotacao(models.Model):
 
     def __str__(self):
         return self.descricao
+
     class Meta:
         verbose_name = "TipoLotacao"
         verbose_name_plural = "TipoLotacao"
