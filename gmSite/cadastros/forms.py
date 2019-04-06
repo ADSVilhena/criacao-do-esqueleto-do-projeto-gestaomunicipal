@@ -5,7 +5,7 @@ from .models import Pessoa, Endereco, Telefone
 class CadastroPessoaForm(forms.ModelForm):
     class Meta:
         model = Pessoa
-        fields = '__all__'
+        fields = ('id', 'nome', 'cpf', 'email', 'senha')
 
 class CadastroEnderecoForm(forms.ModelForm):
     class Meta:

@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 
+from .models import Pessoa
 
 from .forms import CadastroPessoaForm, CadastroEnderecoForm,CadastroTelefoneForm, DadosUserForm
 
@@ -19,14 +20,16 @@ def cadastrar(request):
         form = CadastroPessoaForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/cadastros/address')
+            pessoa_salva = Pessoa.objects.get(cpf=request.POST.get('cpf'))
+            return redirect('/cadastros/address/' + str(pessoa_salva.id) + '/')
     else:
         form = CadastroPessoaForm()
         context = {'form': form}
         return render(request,'cadastros/cadastro.html',context)
 
 
-def cadastrarEndereco(request):
+def cadastrarEndereco(request, pessoa_id):
+    pessoa = get_object_or_404(Pessoa, pk=pessoa_id)
     if request.method == 'POST':
         form = CadastroEnderecoForm(request.POST)
         if form.is_valid():
@@ -37,7 +40,7 @@ def cadastrarEndereco(request):
         context = {'form': form}
         return render(request,'cadastros/cadastroEndereco.html',context)
 
-def cadastrarTelefone(request):
+def cadastrarTelefone(request, pessoa_id):
     if request.method == 'POST':
         form = CadastroTelefoneForm(request.POST)
         if form.is_valid():
