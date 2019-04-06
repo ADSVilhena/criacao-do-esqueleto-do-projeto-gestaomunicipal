@@ -8,4 +8,5 @@ urlpatterns = [
     path('address', views.cadastrarEndereco, name='endereco'),
     path('phone', views.cadastrarTelefone, name='telefone'),
     path('success', views.sucesso, name='sucesso'),
+    path('user', views.dadosUsuario, name='usuario'),
 ]

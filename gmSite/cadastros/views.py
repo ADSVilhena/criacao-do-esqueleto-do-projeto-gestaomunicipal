@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 
-from .forms import CadastroPessoaForm, CadastroEnderecoForm,CadastroTelefoneForm
+from .forms import CadastroPessoaForm, CadastroEnderecoForm,CadastroTelefoneForm, DadosUserForm
 
 # View de Cadastros
 
@@ -47,3 +47,14 @@ def cadastrarTelefone(request):
         form = CadastroTelefoneForm()
         context = {'form': form}
         return render(request,'cadastros/cadastroTelefone.html',context)    
+
+def dadosUsuario(request):
+    if request.method == 'POST':
+        form = DadosUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/cadastros/success')
+    else:
+        form = DadosUserForm()
+        context = {'form': form}
+        return render(request,'cadastros/user.html',context)     
