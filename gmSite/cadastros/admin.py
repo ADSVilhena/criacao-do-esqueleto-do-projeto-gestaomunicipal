@@ -7,9 +7,6 @@ from .models import TipoTelefone
 from .models import Telefone
 
 
-class LotacaoAdmin(admin.ModelAdmin):
-    list_display = ('idOrgao','idPessoa','idTipoLotacao','observacao')
-    list_filter = ['idOrgao']
 
 
 

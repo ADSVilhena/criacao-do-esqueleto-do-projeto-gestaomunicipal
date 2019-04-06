@@ -29,8 +29,8 @@ class TipoLotacao(models.Model):
         return self.descricao
 
     class Meta:
-        verbose_name = "TipoLotacao"
-        verbose_name_plural = "TipoLotacao"
+        verbose_name = "Tipo Lotacao"
+        verbose_name_plural = "Tipo Lotacao"
 
 
 class Lotacao(models.Model):
