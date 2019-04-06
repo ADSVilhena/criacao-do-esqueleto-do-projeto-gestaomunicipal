@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.http import HttpResponseRedirect
 
-from .forms import NameForm
+
+from .forms import CadastroPessoaForm,CadastroEnderecoForm
 
 # View de Cadastros
 
@@ -12,20 +12,28 @@ def index(request):
 
 
 def cadastrar(request):
-    # if this is a POST request we need to process the form data
     if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = NameForm(request.POST)
-        # check whether it's valid:
+        form = CadastroPessoaForm(request.POST)
         if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-
-            return HttpResponse("clicado com sucesso....mas nada foi salvo hehehe")
-
-    # if a GET (or any other method) we'll create a blank form
+            form.save()
+            formEndereco = CadastroEnderecoForm()
+            context = {'form': formEndereco}
+            return render(request, 'cadastros/cadastroEndereco.html',context)
     else:
-        form = NameForm()
+        form = CadastroPessoaForm()
+        context = {'form': form}
+        return render(request,'cadastros/cadastro.html',context)
 
-    return render(request, 'cadastros/cadastro.html', {'form': form})
+
+def cadastrarEndereco(request):
+    if request.method == 'POST':
+        form = CadastroEnderecoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Chegou aqui")
+        else:
+            return HttpResponse("Deu erro aqui")
+    else:
+        form = CadastroEnderecoForm()
+        context = {'form': form}
+        return render(request,'cadastros/cadastroEndereco.html',context)

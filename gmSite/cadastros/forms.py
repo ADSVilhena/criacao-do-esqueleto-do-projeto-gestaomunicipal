@@ -1,7 +1,12 @@
 from django import forms
+from .models import Pessoa, Endereco
 
-class NameForm(forms.Form):
-    nome = forms.CharField(label='PESSOA',max_length=150)
-    cpf = forms.CharField(label='CPF',max_length=11)
-    senha = forms.CharField(label='SENHA',max_length=11)
-    email = forms.EmailField(label='E-MAIL',max_length=100)
+class CadastroPessoaForm(forms.ModelForm):
+    class Meta:
+        model = Pessoa
+        fields = '__all__'
+
+class CadastroEnderecoForm(forms.ModelForm):
+    class Meta:
+        model = Endereco
+        fields = '__all__'
