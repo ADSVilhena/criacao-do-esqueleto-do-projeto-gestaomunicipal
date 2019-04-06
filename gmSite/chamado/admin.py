@@ -13,4 +13,9 @@ class ChamadoAdmin(admin.ModelAdmin):
     list_filter = ['idStatus','idEndereco', 'idEvento', 'dataAbertura', 'dataFechamento']
 
 
+class StatusAdmin(admin.ModelAdmin):
+    list_display = ('descricao',)
+    list_filter = ['descricao']
+
 admin.site.register(Chamados,ChamadoAdmin)
+admin.site.register(Status,StatusAdmin)

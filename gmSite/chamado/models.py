@@ -2,10 +2,20 @@ from django.db import models
 from cadastros.models import Pessoa
 from cadastros.models import Endereco
 from orgao.models import Eventos
-from orgao.models import Status
+
 
 
 # Create your models here.
+class Status(models.Model):
+    descricao = models.CharField('STATUS',max_length=50)
+
+    def __str__(self):
+        return self.descricao
+        
+    class Meta:
+        verbose_name = "Status"
+        verbose_name_plural = "Status"
+
 
 class Chamados(models.Model):
     idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE,verbose_name="PESSOA")
@@ -22,3 +32,4 @@ class Chamados(models.Model):
     class Meta:
         verbose_name = "Chamado"
         verbose_name_plural = "Chamados"
+

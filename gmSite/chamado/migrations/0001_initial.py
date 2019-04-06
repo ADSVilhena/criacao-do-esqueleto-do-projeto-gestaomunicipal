@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('idPessoa', models.IntegerField(verbose_name=cadastros.models.Pessoa)),
                 ('idEvento', models.IntegerField(verbose_name=orgao.models.Eventos)),
-                ('idStatus', models.IntegerField(verbose_name=orgao.models.Status)),
+                ('idStatus', models.IntegerField(verbose_name="STATUS")),
                 ('idEndereco', models.IntegerField(verbose_name=cadastros.models.Endereco)),
                 ('dataAbertura', models.DateField(default=None, verbose_name='ABERTO EM')),
                 ('dataFechamento', models.DateField(blank=True, default=None, null=True, verbose_name='CONCLUÍDO EM')),

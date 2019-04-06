@@ -22,16 +22,6 @@ class Eventos(models.Model):
         verbose_name_plural = "Eventos"
 
 
-class Status(models.Model):
-    descricao = models.CharField('STATUS',max_length=50)
-
-    def __str__(self):
-        return self.descricao
-        
-    class Meta:
-        verbose_name = "Status"
-        verbose_name_plural = "Status"
-
 class TipoLotacao(models.Model):
     descricao = models.CharField('TIPO LOTAÇÃO',max_length=50)
 
