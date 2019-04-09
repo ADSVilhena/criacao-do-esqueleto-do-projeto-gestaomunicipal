@@ -40,7 +40,7 @@ class Endereco(models.Model):
     idPessoa = models.ForeignKey(User, on_delete=models.CASCADE,verbose_name="PESSOA")
 
     def __str__(self):
-        return  self.nome + ", " + self.numero + " - " + self.idBairro.nome
+        return  self.idRua.nome + ", " + self.numero
 
 
 class TipoTelefone(models.Model):
@@ -57,7 +57,7 @@ class Telefone(models.Model):
 
 
     def __str__(self):
-        return self.idPessoa.nome + " - " + self.numero
+        return self.idPessoa.first_name + " - " + self.numero
 
 
 

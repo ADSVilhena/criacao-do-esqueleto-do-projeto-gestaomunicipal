@@ -27,7 +27,7 @@ class Chamados(models.Model):
     observacao = models.CharField('OBSERVAÇÃO',max_length=200)
 
     def __str__(self):
-        return self.User.first_name + " - " + self.idEvento.descricao + " - " + self.idEndereco.nome + " - " + self.idEndereco.numero
+        return self.idPessoa.first_name + " - " + self.idEvento.descricao + " - " + self.idEndereco.idRua.nome + " - " + self.idEndereco.numero
 
     class Meta:
         verbose_name = "Chamado"
