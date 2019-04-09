@@ -12,11 +12,12 @@ class Pessoa(models.Model):
     def __str__(self):
         return self.nome 
 
-class PessoaUser(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE,verbose_name="Usuário")
+class PessoaUser(User):
+    #user = models.OneToOneField(User,on_delete=models.CASCADE,verbose_name="Usuário")
 
     def __str__(self):
-        return self.user.first_name
+        return self.first_name
+
 
 class Bairro(models.Model):
     nome = models.CharField('BAIRRO',max_length=30)
@@ -59,3 +60,9 @@ class Telefone(models.Model):
         return self.idPessoa.nome + " - " + self.numero
 
 
+
+
+def get_first_name(self):
+    return self.first_name
+
+User.add_to_class("__str__", get_first_name)

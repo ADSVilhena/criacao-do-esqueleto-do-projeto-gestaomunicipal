@@ -27,7 +27,7 @@ class RuaAdmin(admin.ModelAdmin):
     list_display = ('id', 'nome', 'idBairro')    
 
 class PessoaUserAdmin(admin.ModelAdmin):
-    list_display = ('user',)
+    list_display = ('first_name',)
     list_filter = []    
 
 #admin.site.register(Pessoa,PessoaAdmin)

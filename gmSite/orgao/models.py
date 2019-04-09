@@ -40,7 +40,7 @@ class Lotacao(models.Model):
     observacao = models.CharField('OBSERVAÇÃO',max_length=200)
     
     def __str__(self):
-        return self.User.first_name + " - " + self.idOrgao.nome
+        return self.idPessoa.first_name + " - " + self.idOrgao.nome
 
     class Meta:
         verbose_name = "Lotação"
