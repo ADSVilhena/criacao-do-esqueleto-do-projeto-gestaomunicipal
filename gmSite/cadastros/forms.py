@@ -7,6 +7,12 @@ class CadastroPessoaForm(forms.ModelForm):
         model = Pessoa
         fields = ('id', 'nome', 'cpf', 'email', 'senha')
 
+class PessoaUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name','last_name','username','email','password',)
+        labels = {'username':'CPF'}
+
 class CadastroEnderecoForm(forms.ModelForm):
     class Meta:
         model = Endereco

@@ -1,8 +1,8 @@
 from django.db import models
-from cadastros.models import Pessoa
+#from cadastros.models import Pessoa
 from cadastros.models import Endereco
 from orgao.models import Eventos
-
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -18,7 +18,7 @@ class Status(models.Model):
 
 
 class Chamados(models.Model):
-    idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE,verbose_name="PESSOA")
+    idPessoa = models.ForeignKey(User, on_delete=models.CASCADE,verbose_name="PESSOA")
     idEvento = models.ForeignKey(Eventos, on_delete=models.CASCADE,verbose_name="SERVIÇO")
     idEndereco = models.ForeignKey(Endereco, on_delete=models.CASCADE,verbose_name="ENDEREÇO")
     idStatus = models.ForeignKey(Status, on_delete=models.CASCADE,verbose_name="STATUS")
@@ -27,7 +27,7 @@ class Chamados(models.Model):
     observacao = models.CharField('OBSERVAÇÃO',max_length=200)
 
     def __str__(self):
-        return self.idPessoa.nome + " - " + self.idEvento.descricao + " - " + self.idEndereco.nome + " - " + self.idEndereco.numero
+        return self.User.first_name + " - " + self.idEvento.descricao + " - " + self.idEndereco.nome + " - " + self.idEndereco.numero
 
     class Meta:
         verbose_name = "Chamado"

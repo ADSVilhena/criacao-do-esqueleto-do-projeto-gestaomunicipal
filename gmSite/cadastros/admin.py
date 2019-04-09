@@ -1,10 +1,14 @@
 from django.contrib import admin
+from django.contrib.auth.models import User
 
-from .models import Pessoa
+#from .models import Pessoa
 from .models import Bairro
 from .models import Endereco
 from .models import TipoTelefone
 from .models import Telefone
+from .models import Rua
+from .models import PessoaUser
+
 
 
 class PessoaAdmin(admin.ModelAdmin):
@@ -12,15 +16,24 @@ class PessoaAdmin(admin.ModelAdmin):
     list_filter = []
 
 class EnderecoAdmin(admin.ModelAdmin):
-    list_display = ('idPessoa', 'nome', 'numero', 'complemento', 'idBairro', )
-    list_filter = ['idPessoa', 'idBairro']
+    list_display = ('idPessoa', 'idRua', 'numero', 'complemento', )
+    list_filter = ['idPessoa',]
 
 class TelefoneAdmin(admin.ModelAdmin):
     list_display = ('idPessoa', 'idTipoTelefone', 'numero')
     list_filter = ['idPessoa', 'idTipoTelefone']
 
-admin.site.register(Pessoa,PessoaAdmin)
+class RuaAdmin(admin.ModelAdmin):
+    list_display = ('id', 'nome', 'idBairro')    
+
+class PessoaUserAdmin(admin.ModelAdmin):
+    list_display = ('user',)
+    list_filter = []    
+
+#admin.site.register(Pessoa,PessoaAdmin)
 admin.site.register(Bairro)
 admin.site.register(Endereco,EnderecoAdmin)
 admin.site.register(TipoTelefone)
 admin.site.register(Telefone,TelefoneAdmin)
+admin.site.register(Rua,RuaAdmin)
+admin.site.register(PessoaUser,PessoaUserAdmin)

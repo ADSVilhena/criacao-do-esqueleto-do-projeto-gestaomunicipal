@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 from .models import Pessoa
 
-from .forms import CadastroPessoaForm, CadastroEnderecoForm,CadastroTelefoneForm, DadosUserForm
+from .forms import CadastroPessoaForm, CadastroEnderecoForm,CadastroTelefoneForm, DadosUserForm, PessoaUserForm
 
 # View de Cadastros
 
@@ -27,6 +28,18 @@ def cadastrar(request):
         context = {'form': form}
         return render(request,'cadastros/cadastro.html',context)
 
+
+def cadastrarPessoaUser(request):
+    if request.method == 'POST':
+        form = PessoaUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            pessoa_salva = User.objects.get(username=request.POST.get('username'))
+            return redirect('/cadastros/address/' + str(pessoa_salva.id) + '/')
+    else:
+        form = PessoaUserForm()
+        context = {'form': form}
+        return render(request,'cadastros/cadastro.html',context)
 
 def cadastrarEndereco(request, pessoa_id):
     pessoa = get_object_or_404(Pessoa, pk=pessoa_id)

@@ -1,6 +1,6 @@
 from django.db import models
-from cadastros.models import Pessoa
-
+#from cadastros.models import Pessoa
+from django.contrib.auth.models import User
 
 class Orgao(models.Model):
     nome = models.CharField('ÓRGÃO',max_length=200)
@@ -35,12 +35,12 @@ class TipoLotacao(models.Model):
 
 class Lotacao(models.Model):
     idTipoLotacao = models.ForeignKey(TipoLotacao, on_delete=models.CASCADE,verbose_name="TIPO LOTAÇÃO")
-    idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE, verbose_name="PESSOA")
+    idPessoa = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="PESSOA")
     idOrgao = models.ForeignKey(Orgao, on_delete=models.CASCADE,verbose_name="ÓRGÃO")
     observacao = models.CharField('OBSERVAÇÃO',max_length=200)
     
     def __str__(self):
-        return self.idPessoa.nome + " - " + self.idOrgao.nome
+        return self.User.first_name + " - " + self.idOrgao.nome
 
     class Meta:
         verbose_name = "Lotação"

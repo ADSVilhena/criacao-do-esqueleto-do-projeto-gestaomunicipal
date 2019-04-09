@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Models de cadastro
 
@@ -11,6 +12,12 @@ class Pessoa(models.Model):
     def __str__(self):
         return self.nome 
 
+class PessoaUser(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE,verbose_name="Usuário")
+
+    def __str__(self):
+        return self.user.first_name
+
 class Bairro(models.Model):
     nome = models.CharField('BAIRRO',max_length=30)
 
@@ -18,12 +25,18 @@ class Bairro(models.Model):
         return self.nome
 
 
+class Rua(models.Model):
+    nome = models.CharField('RUA', max_length=200)
+    idBairro = models.ForeignKey(Bairro, on_delete=models.CASCADE,verbose_name="BAIRRO")
+
+    def __str__(self):
+        return self.nome   
+
 class Endereco(models.Model):
-    nome = models.CharField('RUA',max_length=100)
+    idRua = models.ForeignKey(Rua, on_delete=models.CASCADE,verbose_name="RUA")
     numero = models.CharField('NÚMERO',max_length=5)
     complemento = models.CharField('COMPLEMENTO',max_length=50)
-    idBairro = models.ForeignKey(Bairro, on_delete=models.CASCADE,verbose_name="BAIRRO")
-    idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE,verbose_name="PESSOA")
+    idPessoa = models.ForeignKey(User, on_delete=models.CASCADE,verbose_name="PESSOA")
 
     def __str__(self):
         return  self.nome + ", " + self.numero + " - " + self.idBairro.nome
@@ -39,7 +52,7 @@ class TipoTelefone(models.Model):
 class Telefone(models.Model):
     numero = models.CharField('NÚMERO',max_length=11)
     idTipoTelefone = models.ForeignKey(TipoTelefone, on_delete=models.CASCADE,verbose_name="TIPO TELEFONE")
-    idPessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE,verbose_name="PESSOA")
+    idPessoa = models.ForeignKey(User, on_delete=models.CASCADE,verbose_name="PESSOA")
 
 
     def __str__(self):

@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Pessoa
+from django.contrib.auth.models import User
+#from .models import Pessoa
 from .models import Endereco
 from .models import Eventos
 from .models import Status
