@@ -4,9 +4,9 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('add', views.cadastrar, name='cadastrar'),
-    path('address/<int:pessoa_id>/', views.cadastrarEndereco, name='endereco'),
-    path('phone', views.cadastrarTelefone, name='telefone'),
-    path('success', views.sucesso, name='sucesso'),
+    path('add', views.cadastrarPessoaUser, name='cadastrar'),
+    path('address/<str:cpf>', views.cadastrarEndereco, name='endereco'),
+    path('phone/<str:cpf>', views.cadastrarTelefone, name='telefone'),
+    path('success/<str:cpf>', views.sucesso, name='sucesso'),
     path('user', views.cadastrarPessoaUser, name='usuario'),
 ]
