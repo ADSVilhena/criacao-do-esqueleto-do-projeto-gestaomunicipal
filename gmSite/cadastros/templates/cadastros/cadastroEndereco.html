@@ -1,6 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gestão Municipal</title>
+</head>
+<body>
+{% if user.is_authenticated %}
+<h5>{{user.first_name}}</h5>
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Próximo">
 </form>
+{% else %}
+<a href="{% url 'login' %}">login</a>
+<a href="{% url 'cadastros:cadastrar' %}">Cadastrar</a>
+{% endif %}
+</body>
 
+</html>
