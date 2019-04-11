@@ -1,0 +1,11 @@
+{% load static %}
+
+{% if enderecos_list %}
+    <ul>
+    {% for endereco in enderecos_list %}
+        <li><a href="{% url 'cadastros:endereco_atualizar' endereco.id %}">{{ endereco.idRua.nome}}, {{ endereco.numero}}, {{ endereco.idRua.idBairro.nome}}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}

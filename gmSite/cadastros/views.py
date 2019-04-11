@@ -61,4 +61,12 @@ class AtualizarTelefone(UpdateView):
     model = Telefone
     form_class = CadastroTelefoneForm
     template_name = "cadastros/cadastroTelefone.html"
-    success_url = reverse_lazy('cadastros:sucesso')        
+    success_url = reverse_lazy('cadastros:sucesso')   
+
+
+class ListarEnderecos(ListView):
+    template_name = "cadastros/enderecos_list.html"
+    context_object_name = 'enderecos_list'
+
+    def get_queryset(self):
+        return Endereco.objects.filter(idPessoa_id=1)
