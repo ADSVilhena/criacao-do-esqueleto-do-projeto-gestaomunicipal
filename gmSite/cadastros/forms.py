@@ -1,12 +1,13 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from .models import Endereco, Telefone
 
 
-class PessoaUserForm(forms.ModelForm):
+class PessoaUserForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('first_name','last_name','username','email','password',)
+        fields = ('first_name','last_name','username','email','password1', 'password2')
         labels = {'username':'CPF'}
 
 
