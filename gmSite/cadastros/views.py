@@ -33,32 +33,32 @@ class AtualizarCadastro(UpdateView):
     model = User
     form_class = PessoaUserForm
     template_name = "cadastros/cadastro.html"    
-    success_url = reverse_lazy('sucesso')
+    success_url = reverse_lazy('home')
 
 
 class CriarEndereco(CreateView):
     model = Endereco
     form_class = CadastroEnderecoForm
     template_name = "cadastros/cadastroEndereco.html"
-    success_url = reverse_lazy('telefone')
+    success_url = reverse_lazy('cadastros:telefone')
 
 
 class AtualizarEndereco(UpdateView):
     model = Endereco
     form_class = CadastroEnderecoForm
     template_name = "cadastros/cadastroEndereco.html"
-    success_url = reverse_lazy('sucesso')    
+    success_url = reverse_lazy('cadastros:sucesso')    
 
 
 class CriarTelefone(CreateView):
     model = Telefone
     form_class = CadastroTelefoneForm
     template_name = "cadastros/cadastroTelefone.html"
-    success_url = reverse_lazy('sucesso')
+    success_url = reverse_lazy('cadastros:sucesso')
 
 
 class AtualizarTelefone(UpdateView):
     model = Telefone
     form_class = CadastroTelefoneForm
     template_name = "cadastros/cadastroTelefone.html"
-    success_url = reverse_lazy('sucesso')        
+    success_url = reverse_lazy('cadastros:sucesso')        

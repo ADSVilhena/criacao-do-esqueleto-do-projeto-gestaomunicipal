@@ -6,9 +6,10 @@
 {% if user.is_authenticated %}
   Hi {{ user.first_name }}!
   <a href="{% url 'logout' %}">Sair</a>
+  <a href="{% url 'cadastros:atualizar' user.id %}">Alterar Cadastro</a>
 {% else %}
   <p>You are not logged in</p>
   <a href="{% url 'login' %}">login</a>
-  <a href="{% url 'cadastrar' %}">Cadastrar</a>
+  <a href="{% url 'cadastros:cadastrar' %}">Cadastrar</a>
 {% endif %}
 {% endblock %}
