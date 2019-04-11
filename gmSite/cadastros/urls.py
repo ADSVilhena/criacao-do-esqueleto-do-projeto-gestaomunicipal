@@ -9,9 +9,10 @@ urlpatterns = [
     path('add/', views.CriarCadastro.as_view(), name='cadastrar'),
     path('edit/<int:pk>', views.AtualizarCadastro.as_view(), name='atualizar'),
     path('address/', views.CriarEndereco.as_view(), name='endereco'),
-    path('address/listar', views.ListarEnderecos.as_view(), name='listar_enderecos'),
+    path('address/listar/<int:pk>', views.ListarEnderecos.as_view(), name='listar_enderecos'),
     path('address/edit/<int:pk>', views.AtualizarEndereco.as_view(), name='endereco_atualizar'),
     path('phone/', views.CriarTelefone.as_view(), name='telefone'),
-    path('phone/edit/<int:pk>', views.AtualizarTelefone.as_view(), name='telefone_atualizar'),          
+    path('phone/edit/<int:pk>', views.AtualizarTelefone.as_view(), name='telefone_atualizar'),  
+    path('phone/listar/<int:pk>', views.ListarTelefones.as_view(), name='listar_telefones'),            
     path('success', views.sucesso, name='sucesso'),
 ]

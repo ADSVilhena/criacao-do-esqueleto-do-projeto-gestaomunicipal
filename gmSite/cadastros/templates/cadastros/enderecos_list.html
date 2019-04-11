@@ -1,11 +1,14 @@
 {% load static %}
 
 {% if enderecos_list %}
-    <ul>
+<ul>
     {% for endereco in enderecos_list %}
-        <li><a href="{% url 'cadastros:endereco_atualizar' endereco.id %}">{{ endereco.idRua.nome}}, {{ endereco.numero}}, {{ endereco.idRua.idBairro.nome}}</a></li>
+    <li><a href="{% url 'cadastros:endereco_atualizar' endereco.id %}">{{ endereco.idRua.nome}}, {{ endereco.numero}},
+            {{ endereco.idRua.idBairro.nome}}</a></li>
     {% endfor %}
-    </ul>
+</ul>
+<a href="{% url 'cadastros:endereco' %}">Adicionar endereço</a>
 {% else %}
-    <p>No polls are available.</p>
+<p>Nenhum endereço cadastrado para {{ user.first_name }}.</p>
+<a href="{% url 'cadastros:endereco' %}">Adicionar endereço</a>
 {% endif %}

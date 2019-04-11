@@ -1,0 +1,14 @@
+{% load static %}
+
+{% if telefones_list %}
+<ul>
+    {% for telefone in telefones_list %}
+    <li><a href="{% url 'cadastros:telefone_atualizar' telefone.id %}">{{ telefone.numero}} -
+            {{ telefone.idTipoTelefone.descricao}}</a></li>
+    {% endfor %}
+</ul>
+<a href="{% url 'cadastros:telefone' %}">Adicionar telefone</a>
+{% else %}
+<p>Nenhum telefone cadastrado para {{ user.first_name }}.</p>
+<a href="{% url 'cadastros:telefone' %}">Adicionar telefone</a>
+{% endif %}

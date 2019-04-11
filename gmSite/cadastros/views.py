@@ -69,4 +69,28 @@ class ListarEnderecos(ListView):
     context_object_name = 'enderecos_list'
 
     def get_queryset(self):
-        return Endereco.objects.filter(idPessoa_id=1)
+        self.idPessoa = get_object_or_404(User, id=self.kwargs['pk'])
+        return Endereco.objects.filter(idPessoa_id=self.idPessoa)
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in the publisher
+        context['idPessoa'] = self.idPessoa
+        return context
+
+
+class ListarTelefones(ListView):
+    template_name = "cadastros/telefones_list.html"
+    context_object_name = 'telefones_list'
+
+    def get_queryset(self, **kwargs):
+        self.idPessoa = get_object_or_404(User, id=self.kwargs['pk'])
+        return Telefone.objects.filter(idPessoa_id=self.idPessoa)
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in the publisher
+        context['idPessoa'] = self.idPessoa
+        return context
