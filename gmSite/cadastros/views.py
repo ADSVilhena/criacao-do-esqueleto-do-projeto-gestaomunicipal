@@ -1,56 +1,64 @@
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse_lazy
 from django.contrib.auth.models import User
-
-from .models import Pessoa
-
-from .forms import CadastroEnderecoForm,CadastroTelefoneForm, DadosUserForm, PessoaUserForm
-
-# View de Cadastros
-
+from django.contrib.auth import authenticate, login
+from .forms import CadastroEnderecoForm,CadastroTelefoneForm, PessoaUserForm
+from .models import Endereco, Telefone
 
 def index(request):
-    return HttpResponse("Cadastros")
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/login/?next=%s' % request.path)
+    else:
+        return HttpResponse("Cadastros")
 
-def sucesso(request,cpf):
+def sucesso(request):
     return render(request,'cadastros/sucesso.html')
 
 
-def cadastrarPessoaUser(request):
-    if request.method == 'POST':
-        form = PessoaUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("address/"+request.POST["username"])
-        else:
-            return HttpResponse("O formulário não é válido")
-    else:
-        form = PessoaUserForm()
-        context = {'form': form}
-        return render(request,'cadastros/cadastro.html',context)
+class ListarCadastro(ListView):
+    model = User
+    context_object_name = 'usuario'
 
-def cadastrarEndereco(request,cpf):
-    if request.method == 'POST':
-        form = CadastroEnderecoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect(cadastrarTelefone, cpf)
-        else:
-            return HttpResponse("O formulário não é válido")
-    else:
-        form = CadastroEnderecoForm()
-        context = {'form': form}
-        return render(request,'cadastros/cadastroEndereco.html',context)
 
-def cadastrarTelefone(request,cpf):
-    if request.method == 'POST':
-        form = CadastroTelefoneForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect(sucesso, cpf)
-        else:
-            return HttpResponse("O formulário não é válido")
-    else:
-        form = CadastroTelefoneForm()
-        context = {'form': form}
-        return render(request,'cadastros/cadastroTelefone.html',context)
+class CriarCadastro(CreateView):
+    model = User
+    form_class = PessoaUserForm
+    template_name = "cadastros/cadastro.html"
+    success_url = reverse_lazy('endereco')
+
+
+class AtualizarCadastro(UpdateView):
+    model = User
+    form_class = PessoaUserForm
+    template_name = "cadastros/cadastro.html"    
+    success_url = reverse_lazy('sucesso')
+
+
+class CriarEndereco(CreateView):
+    model = Endereco
+    form_class = CadastroEnderecoForm
+    template_name = "cadastros/cadastroEndereco.html"
+    success_url = reverse_lazy('telefone')
+
+
+class AtualizarEndereco(UpdateView):
+    model = Endereco
+    form_class = CadastroEnderecoForm
+    template_name = "cadastros/cadastroEndereco.html"
+    success_url = reverse_lazy('sucesso')    
+
+
+class CriarTelefone(CreateView):
+    model = Telefone
+    form_class = CadastroTelefoneForm
+    template_name = "cadastros/cadastroTelefone.html"
+    success_url = reverse_lazy('sucesso')
+
+
+class AtualizarTelefone(UpdateView):
+    model = Telefone
+    form_class = CadastroTelefoneForm
+    template_name = "cadastros/cadastroTelefone.html"
+    success_url = reverse_lazy('sucesso')        

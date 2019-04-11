@@ -1,23 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Models de cadastro
-
-class Pessoa(models.Model):
-    nome = models.CharField('PESSOA',max_length=150)
-    cpf = models.CharField('CPF',max_length=11)
-    senha = models.CharField('SENHA',max_length=11)
-    email = models.CharField('E-MAIL',max_length=100)
-
-    def __str__(self):
-        return self.nome 
-
-class PessoaUser(User):
-    #user = models.OneToOneField(User,on_delete=models.CASCADE,verbose_name="Usuário")
-
-    def __str__(self):
-        return self.first_name
-
 
 class Bairro(models.Model):
     nome = models.CharField('BAIRRO',max_length=30)

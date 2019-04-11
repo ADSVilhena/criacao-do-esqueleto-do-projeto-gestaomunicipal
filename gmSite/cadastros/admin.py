@@ -7,7 +7,6 @@ from .models import Endereco
 from .models import TipoTelefone
 from .models import Telefone
 from .models import Rua
-from .models import PessoaUser
 
 
 
@@ -36,4 +35,3 @@ admin.site.register(Endereco,EnderecoAdmin)
 admin.site.register(TipoTelefone)
 admin.site.register(Telefone,TelefoneAdmin)
 admin.site.register(Rua,RuaAdmin)
-admin.site.register(PessoaUser,PessoaUserAdmin)

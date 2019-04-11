@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Pessoa, Endereco, Telefone
+from .models import Endereco, Telefone
 
 
 class PessoaUserForm(forms.ModelForm):
@@ -8,6 +8,7 @@ class PessoaUserForm(forms.ModelForm):
         model = User
         fields = ('first_name','last_name','username','email','password',)
         labels = {'username':'CPF'}
+
 
 class CadastroEnderecoForm(forms.ModelForm):
     class Meta:

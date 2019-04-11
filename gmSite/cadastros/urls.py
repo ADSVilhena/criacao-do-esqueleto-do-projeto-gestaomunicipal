@@ -4,9 +4,11 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('add', views.cadastrarPessoaUser, name='cadastrar'),
-    path('address/<str:cpf>', views.cadastrarEndereco, name='endereco'),
-    path('phone/<str:cpf>', views.cadastrarTelefone, name='telefone'),
-    path('success/<str:cpf>', views.sucesso, name='sucesso'),
-    path('user', views.cadastrarPessoaUser, name='usuario'),
+    path('add/', views.CriarCadastro.as_view(), name='cadastrar'),
+    path('edit/<int:pk>', views.AtualizarCadastro.as_view(), name='atualizar'),
+    path('address/', views.CriarEndereco.as_view(), name='endereco'),
+    path('address/edit/<int:pk>', views.AtualizarEndereco.as_view(), name='endereco_atualizar'),
+    path('phone/', views.CriarTelefone.as_view(), name='telefone'),
+    path('phone/edit/<int:pk>', views.AtualizarTelefone.as_view(), name='telefone_atualizar'),          
+    path('success', views.sucesso, name='sucesso'),
 ]
