@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gestão Municipal - Lista de Chamados</title>
+</head>
+
+<body>
+    {% load static %}
+
+    {% if user.is_authenticated %}
+    {% if chamados_list %}
+    <ul>
+        
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>ÓRGÃO</th>
+                <th>SERVIÇO</th>
+                <th>ENDEREÇO</th>
+                <th>ABERTURA</th>
+                <th>FECHAMENTO</th>
+                <th>OBSERVAÇÃO</th>
+            </tr>
+            {% for chamado in chamados_list %}
+            <tr>
+                <td><a href="{% url 'chamados:editar_chamado' chamado.id %}">{{chamado.id}}</a></td>
+                <td>{{chamado.idEvento.idOrgao.nome}}</td>
+                <td>{{chamado.idEvento.descricao}}</td>
+                <td>{{chamado.idEndereco.idRua.nome}}, {{chamado.idEndereco.numero}} - {{chamado.idEndereco.idRua.idBairro.nome}} </td>
+                <td>{{chamado.dataAbertura}}</td>
+                <td>{{chamado.dataFechamento}}</td>
+                <td>{{chamado.observacao}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        
+    </ul>
+    <a href="{% url 'chamados:abrir_chamado' user.id %}">Abrir chamado</a>
+    {% else %}
+    <a href="{% url 'chamados:abrir_chamado' user.id %}">Abrir chamado</a>
+    {% endif %}
+    {% else %}
+    <a href="{% url 'login' %}">login</a>
+    <a href="{% url 'cadastros:cadastrar' %}">Cadastrar</a>
+    {% endif %}
+</body>
+
+</html>

@@ -1,5 +1,4 @@
 from django.db import models
-#from cadastros.models import Pessoa
 from cadastros.models import Endereco
 from orgao.models import Eventos
 from django.contrib.auth.models import User

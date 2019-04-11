@@ -9,6 +9,7 @@
   <a href="{% url 'cadastros:atualizar' user.id %}">Alterar Cadastro</a>
   <a href="{% url 'cadastros:listar_enderecos' user.id  %}">Endereços</a>
   <a href="{% url 'cadastros:listar_telefones' user.id %}">Telefones</a>
+  <a href="{% url 'chamados:listar_chamados' user.id %}">Chamados</a>  
 {% else %}
   <p>You are not logged in</p>
   <a href="{% url 'login' %}">login</a>

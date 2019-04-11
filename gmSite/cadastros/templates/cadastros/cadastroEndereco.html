@@ -9,7 +9,6 @@
 </head>
 <body>
 {% if user.is_authenticated %}
-<h5>{{user.first_name}}</h5>
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
@@ -20,5 +19,13 @@
 <a href="{% url 'cadastros:cadastrar' %}">Cadastrar</a>
 {% endif %}
 </body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+$(function() {
+    $("#id_idPessoa").val({{user.id}});
+    document.getElementById("id_idPessoa").style.display = 'none';})
+</script>
 
+
+</script>
 </html>

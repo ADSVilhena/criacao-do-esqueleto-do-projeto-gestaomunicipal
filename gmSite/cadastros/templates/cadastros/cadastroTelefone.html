@@ -20,5 +20,10 @@
     <a href="{% url 'cadastros:cadastrar' %}">Cadastrar</a>
     {% endif %}
 </body>
-
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+$(function() {
+    $("#id_idPessoa").val({{user.id}});
+    document.getElementById("id_idPessoa").style.display = 'none';})
+</script>
 </html>
