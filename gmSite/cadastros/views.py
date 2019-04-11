@@ -40,28 +40,28 @@ class CriarEndereco(CreateView):
     model = Endereco
     form_class = CadastroEnderecoForm
     template_name = "cadastros/cadastroEndereco.html"
-    success_url = reverse_lazy('cadastros:telefone')
+    success_url = reverse_lazy('home')
 
 
 class AtualizarEndereco(UpdateView):
     model = Endereco
     form_class = CadastroEnderecoForm
     template_name = "cadastros/cadastroEndereco.html"
-    success_url = reverse_lazy('cadastros:sucesso')    
+    success_url = reverse_lazy('home')    
 
 
 class CriarTelefone(CreateView):
     model = Telefone
     form_class = CadastroTelefoneForm
     template_name = "cadastros/cadastroTelefone.html"
-    success_url = reverse_lazy('cadastros:sucesso')
+    success_url = reverse_lazy('home')
 
 
 class AtualizarTelefone(UpdateView):
     model = Telefone
     form_class = CadastroTelefoneForm
     template_name = "cadastros/cadastroTelefone.html"
-    success_url = reverse_lazy('cadastros:sucesso')   
+    success_url = reverse_lazy('home')   
 
 
 class ListarEnderecos(ListView):
