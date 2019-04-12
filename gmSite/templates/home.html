@@ -1,18 +1,73 @@
-{% extends 'admin/base_site.html' %}
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
 
-{% block title %}{% endblock %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+  <title>Home</title>
+</head>
 
-{% block content %}
-{% if user.is_authenticated %}
-  Hi {{ user.first_name }}!
-  <a href="{% url 'logout' %}">Sair</a>
-  <a href="{% url 'cadastros:atualizar' user.id %}">Alterar Cadastro</a>
-  <a href="{% url 'cadastros:listar_enderecos' user.id  %}">Endereços</a>
-  <a href="{% url 'cadastros:listar_telefones' user.id %}">Telefones</a>
-  <a href="{% url 'chamados:listar_chamados' user.id %}">Chamados</a>  
-{% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'login' %}">login</a>
-  <a href="{% url 'cadastros:cadastrar' %}">Cadastrar</a>
-{% endif %}
-{% endblock %}
+<body class="container ">
+  <header class="container  cabecalho">
+    <h1>Gestão Municipal</h1>
+  </header>
+
+  <div class="conteudoSite">
+
+    <div class="container menuEsquerdo">
+      <div class="usuario">
+        {% load staticfiles %}
+        {% block title %}{% endblock %}
+
+        {% block content %}
+        {% if user.is_authenticated %}
+
+        Hi {{ user.first_name }}!
+      </div>
+      <div>
+        <ul class="nav flex-column">
+          <li class="nav-item itemMenu">
+            <a class="nav-link active" href="{% url 'cadastros:atualizar' user.id %}">Alterar Cadastro</a>
+          </li>
+          <li class="nav-item itemMenu">
+            <a class="nav-link active" href="{% url 'cadastros:listar_enderecos' user.id  %}">Endereços</a>
+          </li>
+          <li class="nav-item itemMenu">
+            <a class="nav-link" href="{% url 'cadastros:listar_telefones' user.id %}">Telefones</a>
+          </li>
+          <li class="nav-item itemMenu">
+            <a class="nav-link" href="{% url 'chamados:listar_chamados' user.id %}">Chamados</a>
+          </li>
+          <li class="nav-item itemMenu">
+            <a href="{% url 'logout' %}" class="nav-link disabled">LOGOUT</a>
+
+          </li>
+        </ul>
+        {% else %}
+        <p>You are not logged in</p>
+        <ul class="nav flex-column menuLogout">
+            <li class="nav-item itemMenu ">
+              <a class="nav-link active" href="{%url 'login'%}">LOGIN</a>
+            </li>
+            <li class="nav-item itemMenu ">
+                <a class="nav-link active" href="{%url 'cadastros:cadastrar'%}">Cadastrar</a>
+              </li>
+        </ul>
+        
+        {% endif %}
+        {% endblock %}
+       
+      </div>
+    </div>
+    <div class="menuCentro">
+    </div>
+  </div>
+
+</body>
+
+</html>

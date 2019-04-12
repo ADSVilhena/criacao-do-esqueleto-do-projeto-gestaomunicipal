@@ -66,13 +66,17 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+           
         },
     },
 ]
 
 WSGI_APPLICATION = 'gmSite.wsgi.application'
 
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/static/',
+]
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
@@ -80,8 +84,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'vha',
-        'USER': 'root',
-        'PASSWORD': 'root',
+        'USER': 'suporte',
+        'PASSWORD': 'dalbem88',
         'HOST': 'localhost',
         'HOST': 'localhost',
         'PORT': '3306',
