@@ -84,8 +84,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'vha',
-        'USER': 'root',
-        'PASSWORD': 'root',
+        'USER': 'suporte',
+        'PASSWORD': 'dalbem88',
         'HOST': 'localhost',
         'HOST': 'localhost',
         'PORT': '3306',
@@ -131,6 +131,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'testeHome'
 
-LOGOUT_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'testeHome'
