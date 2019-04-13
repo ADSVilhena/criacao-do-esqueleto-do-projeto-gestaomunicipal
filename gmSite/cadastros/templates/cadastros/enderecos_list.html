@@ -13,12 +13,22 @@
 
     {% if user.is_authenticated %}
     {% if enderecos_list %}
-    <ul>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>RUA</th>
+            <th>NÚMERO</th>
+            <th>BAIRRO</th>
+        </tr>
         {% for endereco in enderecos_list %}
-        <li><a href="{% url 'cadastros:endereco_atualizar' endereco.id %}">{{ endereco.idRua.nome}},
-                {{ endereco.numero}},
-                {{ endereco.idRua.idBairro.nome}}</a></li>
+        <tr>
+            <td><a href="{% url 'cadastros:endereco_atualizar' endereco.id %}"></a>{{endereco.id}}</td>
+            <td>{{endereco.idRua.nome}}</td>
+            <td>{{endereco.numero}}</td>
+            <td>{{endereco.idRua.idBairro.nome}}</td>
+        </tr>
         {% endfor %}
+    </table>
     </ul>
     <a href="{% url 'cadastros:endereco' %}">Adicionar endereço</a>
     {% else %}

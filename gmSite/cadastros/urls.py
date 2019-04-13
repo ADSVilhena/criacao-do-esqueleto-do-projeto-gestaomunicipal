@@ -13,6 +13,7 @@ urlpatterns = [
     path('address/edit/<int:pk>', views.AtualizarEndereco.as_view(), name='endereco_atualizar'),
     path('phone/', views.CriarTelefone.as_view(), name='telefone'),
     path('phone/edit/<int:pk>', views.AtualizarTelefone.as_view(), name='telefone_atualizar'),  
+    path('phone/delete/<int:pk>', views.DeletarTelefone.as_view(), name='telefone_deletar'), 
     path('phone/listar/<int:pk>', views.ListarTelefones.as_view(), name='listar_telefones'),            
     path('success', views.sucesso, name='sucesso'),
 ]

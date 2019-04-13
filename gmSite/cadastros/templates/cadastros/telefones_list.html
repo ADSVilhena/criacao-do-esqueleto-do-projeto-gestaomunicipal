@@ -1,14 +1,45 @@
-{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% if telefones_list %}
-<ul>
-    {% for telefone in telefones_list %}
-    <li><a href="{% url 'cadastros:telefone_atualizar' telefone.id %}">{{ telefone.numero}} -
-            {{ telefone.idTipoTelefone.descricao}}</a></li>
-    {% endfor %}
-</ul>
-<a href="{% url 'cadastros:telefone' %}">Adicionar telefone</a>
-{% else %}
-<p>Nenhum telefone cadastrado para {{ user.first_name }}.</p>
-<a href="{% url 'cadastros:telefone' %}">Adicionar telefone</a>
-{% endif %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    {% load static %}
+    {% if telefones_list %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>NÚMERO</th>
+            <th>TIPO</th>
+            <th>AÇÕES</th>
+        </tr>
+        {% for telefone in telefones_list %}
+        <tr>
+            <td><a href="{% url 'cadastros:telefone_atualizar' telefone.id %}">{{telefone.id}}</td> 
+            <td>{{telefone.numero}}</td>
+            <td>{{telefone.idTipoTelefone.descricao}}</td>
+            <td>
+                <a href="{% url 'cadastros:telefone_deletar' telefone.id %}">Deletar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <ul>
+
+        <li><a href="">{{ telefone.numero}} -
+                {{ telefone.idTipoTelefone.descricao}}</a></li>
+
+    </ul>
+    <a href="{% url 'cadastros:telefone' %}">Adicionar telefone</a>
+    {% else %}
+    <p>Nenhum telefone cadastrado para {{ user.first_name }}.</p>
+    <a href="{% url 'cadastros:telefone' %}">Adicionar telefone</a>
+    {% endif %}
+</body>
+
+</html>

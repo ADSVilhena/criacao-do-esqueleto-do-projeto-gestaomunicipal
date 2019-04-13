@@ -64,6 +64,12 @@ class AtualizarTelefone(UpdateView):
     success_url = reverse_lazy('home')   
 
 
+class DeletarTelefone(DeleteView):
+    model = Telefone
+    template_name = "cadastros/telefone_confirm_delete.html"
+    success_url = reverse_lazy('home')
+
+
 class ListarEnderecos(ListView):
     template_name = "cadastros/enderecos_list.html"
     context_object_name = 'enderecos_list'

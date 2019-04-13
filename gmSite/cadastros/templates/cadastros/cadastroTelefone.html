@@ -9,6 +9,7 @@
 </head>
 
 <body>
+
     {% if user.is_authenticated %}
     <form method="POST">
         {% csrf_token %}
@@ -19,6 +20,7 @@
     <a href="{% url 'login' %}">login</a>
     <a href="{% url 'cadastros:cadastrar' %}">Cadastrar</a>
     {% endif %}
+    <!-- <a href="url 'cadastros:telefone_deletar' object.id ">Deletar</a> -->
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>

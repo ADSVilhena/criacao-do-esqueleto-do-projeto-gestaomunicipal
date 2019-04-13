@@ -13,8 +13,6 @@
 
     {% if user.is_authenticated %}
     {% if chamados_list %}
-    <ul>
-        
         <table>
             <tr>
                 <th>ID</th>
@@ -37,9 +35,6 @@
             </tr>
             {% endfor %}
         </table>
-
-        
-    </ul>
     <a href="{% url 'chamados:abrir_chamado' user.id %}">Abrir chamado</a>
     {% else %}
     <a href="{% url 'chamados:abrir_chamado' user.id %}">Abrir chamado</a>
