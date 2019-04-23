@@ -5,6 +5,14 @@ from .models import Endereco, Telefone
 
 
 class PessoaUserForm(UserCreationForm):
+    def __init__(self, *args, **kwargs):
+        super(PessoaUserForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].widget.attrs = {'class':'form-group form-control','type':'text','placeholder':'first_name'}
+        self.fields['last_name'].widget.attrs = {'class':'form-group form-control','type':'text','placeholder':'last_name'}
+        self.fields['username'].widget.attrs = {'class':'form-group form-control','type':'text','placeholder':'user_name'}
+        self.fields['email'].widget.attrs = {'class':'form-group form-control','type':'mail','placeholder':'email'}
+        self.fields['password1'].widget.attrs = {'class':'form-group form-control','type':'password','placeholder':'password'}
+        self.fields['password2'].widget.attrs = {'class':'form-group form-control','type':'password','placeholder':'Repeat your password'}
     class Meta:
         model = User
         fields = ('first_name','last_name','username','email','password1', 'password2')
