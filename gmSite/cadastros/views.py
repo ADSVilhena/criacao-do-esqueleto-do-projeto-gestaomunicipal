@@ -54,20 +54,20 @@ class CriarTelefone(CreateView):
     model = Telefone
     form_class = CadastroTelefoneForm
     template_name = "cadastros/cadastroTelefone.html"
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('testeHome')
 
 
 class AtualizarTelefone(UpdateView):
     model = Telefone
     form_class = CadastroTelefoneForm
     template_name = "cadastros/cadastroTelefone.html"
-    success_url = reverse_lazy('home')   
+    success_url = reverse_lazy('testeHome')   
 
 
 class DeletarTelefone(DeleteView):
     model = Telefone
     template_name = "cadastros/telefone_confirm_delete.html"
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('testeHome')
 
 
 class ListarEnderecos(ListView):

@@ -108,7 +108,7 @@
             </table>
             <a class="btn btn-primary" href="{% url 'cadastros:endereco' %}" role="button">Adicionar Endereço</a>
             {% else %}
-            <p>Nenhum endereco para {{ user.first_name }}.</p>
+            <h4 class="bg-danger text-white text-center"><p>Nenhum endereco Cadastrado para {{ user.first_name }}!</p></h4>
             </ul>
             <a class="btn btn-primary" href="{% url 'cadastros:endereco' %}" role="button">Adicionar Endereço</a>
             {% endif %}

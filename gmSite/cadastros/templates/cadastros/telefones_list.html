@@ -5,41 +5,129 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Meus Telefones</title>
 </head>
 
 <body>
-    {% load static %}
-    {% if telefones_list %}
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>NÚMERO</th>
-            <th>TIPO</th>
-            <th>AÇÕES</th>
-        </tr>
-        {% for telefone in telefones_list %}
-        <tr>
-            <td><a href="{% url 'cadastros:telefone_atualizar' telefone.id %}">{{telefone.id}}</td> 
-            <td>{{telefone.numero}}</td>
-            <td>{{telefone.idTipoTelefone.descricao}}</td>
-            <td>
-                <a href="{% url 'cadastros:telefone_deletar' telefone.id %}">Deletar</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-    <ul>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
-        <li><a href="">{{ telefone.numero}} -
-                {{ telefone.idTipoTelefone.descricao}}</a></li>
+            <a class="navbar-brand font-weight-bold" href="{% url 'testeHome' %}">Gestão Municipal</a>
 
-    </ul>
-    <a href="{% url 'cadastros:telefone' %}">Adicionar telefone</a>
-    {% else %}
-    <p>Nenhum telefone cadastrado para {{ user.first_name }}.</p>
-    <a href="{% url 'cadastros:telefone' %}">Adicionar telefone</a>
-    {% endif %}
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsite">
+                <span class="navbar-toggler-icon">
+
+                </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsite">
+                {% load staticfiles %}
+                {% block title %}{% endblock %}
+                {% block content %}
+
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> Hi {{ user.first_name }}!</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'cadastros:atualizar' user.id %}">Alterar Cadastro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'cadastros:listar_enderecos' user.id  %}">Endereços</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'cadastros:listar_telefones' user.id %}">Meus Telefones</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownChamados"
+                            data-toggle="dropdown">Chamados</a>
+
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Abertos</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Em Andamento</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Concluídos</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'chamados:listar_chamados' user.id %}">Todos os
+                                Chamados</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
+                    </li>
+
+                    {% else %}
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">You are not logged in </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'cadastros:cadastrar'%}">Cadastrar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'login'%}">LOGIN </a>
+                        </li>
+                        {% endif %}
+                        {% endblock %}
+                    </ul>
+            </div>
+        </nav>
+        <div class="text-center mt-3 mb-3 text-secondary">
+            <h3>Meus Telefones</h3>
+        </div>
+        <div class="container">
+
+            {% load static %}
+            {% if telefones_list %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">NÚMERO</th>
+                        <th scope="col">TIPO</th>
+                        <th scope="col">AÇÕES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for telefone in telefones_list %}
+                    <tr>
+                        <td><a href="{% url 'cadastros:telefone_atualizar' telefone.id %}">{{telefone.id}}</td>
+                        <td>{{telefone.numero}}</td>
+                        <td>{{telefone.idTipoTelefone.descricao}}</td>
+                        <td>
+                            <a href="{% url 'cadastros:telefone_deletar' telefone.id %}">Deletar</a>
+                        </td>
+                    </tr>
+                </tbody>
+
+                {% endfor %}
+            </table>
+            <a class="btn btn-primary" href="{% url 'cadastros:telefone' %}" role="button">Adicionar Telefone</a>
+            <!--<a href="{% url 'cadastros:telefone' %}">Adicionar telefone</a>-->
+            {% else %}
+            <h4 class="bg-danger text-white text-center"><p>Nenhum telefone cadastrado para  {{ user.first_name }}!</p></h4>
+            <a class="btn btn-primary" href="{% url 'cadastros:telefone' %}" role="button">Adicionar Telefone</a>
+            <!---<a href="{% url 'cadastros:telefone' %}">Adicionar telefone</a>-->
+            {% endif %}
+
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
 </body>
 
 </html>
