@@ -5,3 +5,4 @@ class ChamadosForm(forms.ModelForm):
     class Meta:
         model = Chamados
         fields = '__all__'
+
