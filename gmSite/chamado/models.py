@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Status(models.Model):
     descricao = models.CharField('STATUS',max_length=50)
+    
 
     def __str__(self):
         return self.descricao

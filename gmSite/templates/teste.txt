@@ -1,0 +1,17 @@
+    {% if user.is_authenticated %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Próximo">
+    </form>
+    {% else %}
+    <a href="{% url 'login' %}">login</a>
+    <a href="{% url 'cadastros:cadastrar' %}">Cadastrar</a>
+    {% endif %}
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $(function () {
+        $("#id_idPessoa").val({{ user.id }});
+    document.getElementById("id_idPessoa").style.display = 'none';})
+</script>

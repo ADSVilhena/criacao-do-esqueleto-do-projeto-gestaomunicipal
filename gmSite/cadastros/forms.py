@@ -12,6 +12,13 @@ class PessoaUserForm(UserCreationForm):
 
 
 class CadastroEnderecoForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(CadastroEnderecoForm, self).__init__(*args, **kwargs)
+       #self.fields['idRua'].widget.attrs = {'class':'form-group form-control', 'type':'text', 'placeholder':'idRua'}
+        self.fields['numero'].widget.attrs = {'class':'forms''form-group form-control', 'type':'text', 'placeholder':'numero da Rua'}
+        self.fields['complemento'].widget.attrs = {'class':'form-group form-control', 'type':'text', 'placeholder':'complemento'}
+        #self.fields['idPessoa'].widget.attrs = {'class':'form-group form-control', 'type':'text'}
+
     class Meta:
         model = Endereco
         fields = '__all__'
