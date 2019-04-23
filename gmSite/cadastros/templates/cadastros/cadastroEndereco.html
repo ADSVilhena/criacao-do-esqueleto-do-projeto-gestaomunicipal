@@ -80,16 +80,21 @@
             </div>
         </nav>
         <div class="container">
-            {% if user.is_authenticated %}
-            <form method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Próximo">
-            </form>
-            {% else %}
-            <a href="{% url 'login' %}">login</a>
-            <a href="{% url 'cadastros:cadastrar' %}">Cadastrar</a>
-            {% endif %}
+            <div class="row">
+                {% if user.is_authenticated %}
+                <form method="POST">
+                    <div class="col">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                    </div>
+                    <input type="submit" value="Próximo">
+                </form>
+                {% else %}
+               <!-- <a href="{% url 'login' %}">login</a>
+                <a href="{% url 'cadastros:cadastrar' %}">Cadastrar</a>-->
+                {% endif %}
+            </div>
+        </div>
 </body>
 
 </div>
