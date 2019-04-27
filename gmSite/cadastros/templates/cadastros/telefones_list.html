@@ -17,7 +17,7 @@
             <td>{{telefone.numero}}</td>
             <td>{{telefone.idTipoTelefone.descricao}}</td>
             <td>
-                <a href="{% url 'cadastros:telefone_deletar' telefone.id %}">Deletar</a>
+                <a class="btn btn-danger" href="{% url 'cadastros:telefone_deletar' telefone.id %}">Deletar</a>
             </td>
         </tr>
     </tbody>
