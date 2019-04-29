@@ -1,31 +1,22 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+{% extends 'admin/base_main.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gestão Municipal</title>
-</head>
-<body>
-{% if user.is_authenticated %}
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Próximo">
-</form>
-{% else %}
-<a href="{% url 'login' %}">login</a>
-<a href="{% url 'cadastros:cadastrar' %}">Cadastrar</a>
-{% endif %}
-</body>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-$(function() {
-    $("#id_idPessoa").val({{user.id}});
-    document.getElementById("id_idPessoa").style.display = 'none';})
-</script>
+{% block centro %}
+<title>Editar Chamado</title>
+<div class="container mt-5">
+    <div class="container text-center">
+        <h3>Editar Chamado</h3>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-primary mt-2"  type="submit" value="Próximo">
+    </form>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(function () {
+            $("#id_idPessoa").val({{ user.id }});
+        document.getElementById("id_idPessoa").style.display = 'none';})
+    </script>
+</div>
 
-
-</script>
-</html>
+{% endblock%}

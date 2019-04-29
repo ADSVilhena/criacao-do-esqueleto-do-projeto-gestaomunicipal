@@ -1,48 +1,50 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+{% extends "admin/base_main.html" %}
+{% block centro%}
+<title>Meus Chamados</title>
+<div class="container text-center mt-3">
+    <h3>Meus Chamados</h3>
+</div>
+{% if chamados_list %}
+<table class="table mt-5">
+    <thead>
+        <tr>
+            <!---<th  scope="col">ID</th>-->
+            <th  scope="col">ÓRGÃO</th>
+            <th  scope="col">SERVIÇO</th>
+            <th  scope="col">ENDEREÇO</th>
+            <th  scope="col">ABERTURA</th>
+            <th  scope="col">FECHAMENTO</th>
+            <th  scope="col">OBSERVAÇÃO</th>
+            <th  scope="col">ACÂO</th>
+        </tr>
+    </thead>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gestão Municipal - Lista de Chamados</title>
-</head>
+    {% for chamado in chamados_list %}
+    <tr>
+        <!---<td class=""><a class=""  href="{% url 'chamados:editar_chamado' chamado.id %}">{{chamado.id}}</a></td>-->
+        <td>{{chamado.idEvento.idOrgao.nome}}</td>
+        <td>{{chamado.idEvento.descricao}}</td>
+        <td>{{chamado.idEndereco.idRua.nome}}, {{chamado.idEndereco.numero}} -
+            {{chamado.idEndereco.idRua.idBairro.nome}} </td>
+        <td>{{chamado.dataAbertura}}</td>
+        <td>{{chamado.dataFechamento}}</td>
+        <td>{{chamado.observacao}}</td>
+        <td><a class="btn text-danger " href="{% url 'chamados:editar_chamado' chamado.id %}"{{chamado.id}}>Alterar Chamado </a></td>
+    </tr>
+    {% endfor %}
+</table>
+<a  class="btn btn-primary mt-2" href="{% url 'chamados:abrir_chamado' user.id %}">Abrir chamado</a>
 
-<body>
-    {% load static %}
+{% else %}
 
-    {% if user.is_authenticated %}
-    {% if chamados_list %}
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>ÓRGÃO</th>
-                <th>SERVIÇO</th>
-                <th>ENDEREÇO</th>
-                <th>ABERTURA</th>
-                <th>FECHAMENTO</th>
-                <th>OBSERVAÇÃO</th>
-            </tr>
-            {% for chamado in chamados_list %}
-            <tr>
-                <td><a href="{% url 'chamados:editar_chamado' chamado.id %}">{{chamado.id}}</a></td>
-                <td>{{chamado.idEvento.idOrgao.nome}}</td>
-                <td>{{chamado.idEvento.descricao}}</td>
-                <td>{{chamado.idEndereco.idRua.nome}}, {{chamado.idEndereco.numero}} - {{chamado.idEndereco.idRua.idBairro.nome}} </td>
-                <td>{{chamado.dataAbertura}}</td>
-                <td>{{chamado.dataFechamento}}</td>
-                <td>{{chamado.observacao}}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    <a href="{% url 'chamados:abrir_chamado' user.id %}">Abrir chamado</a>
-    {% else %}
-    <a href="{% url 'chamados:abrir_chamado' user.id %}">Abrir chamado</a>
-    {% endif %}
-    {% else %}
-    <a href="{% url 'login' %}">login</a>
-    <a href="{% url 'cadastros:cadastrar' %}">Cadastrar</a>
-    {% endif %}
-</body>
+<div class="container text-center mt-5">
+    <div class="bg-danger text-light">
+        <H3>Não há Chamados Cadastrados</H3>
+    </div>
+    <a class="btn btn-primary mt-2" href="{% url 'chamados:abrir_chamado' user.id %}">Abrir chamado</a>
 
-</html>
+</div>
+
+{% endif %}
+
+{% endblock%}
