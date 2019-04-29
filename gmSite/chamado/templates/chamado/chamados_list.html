@@ -17,6 +17,7 @@
             <th  scope="col">ABERTURA</th>
             <th  scope="col">FECHAMENTO</th>
             <th  scope="col">OBSERVAÇÃO</th>
+            <th scope="col">STATUS</th>
             <th  scope="col">AÇÂO</th>
         </tr>
     </thead>
@@ -31,6 +32,8 @@
         <td>{{chamado.dataAbertura}}</td>
         <td>{{chamado.dataFechamento}}</td>
         <td>{{chamado.observacao}}</td>
+        <td>{{chamado.idStatus.descricao}}</td>
+
         <td><a class="btn text-danger " href="{% url 'chamados:editar_chamado' chamado.id %}"{{chamado.id}}>Alterar Chamado </a></td>
     </tr>
     {% endfor %}
