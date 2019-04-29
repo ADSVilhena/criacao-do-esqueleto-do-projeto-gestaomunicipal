@@ -2,7 +2,9 @@
 {% block centro%}
 <title>Meus Chamados</title>
 <div class="container text-center mt-3">
-    <h3>Meus Chamados</h3>
+        {% block title %}
+        <title>Meus Chamados</title>
+    {% endblock%}
 </div>
 {% if chamados_list %}
 <table class="table mt-5">
@@ -15,7 +17,7 @@
             <th  scope="col">ABERTURA</th>
             <th  scope="col">FECHAMENTO</th>
             <th  scope="col">OBSERVAÇÃO</th>
-            <th  scope="col">ACÂO</th>
+            <th  scope="col">AÇÂO</th>
         </tr>
     </thead>
 

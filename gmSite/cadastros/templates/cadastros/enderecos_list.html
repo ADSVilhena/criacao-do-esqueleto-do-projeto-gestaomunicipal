@@ -2,6 +2,10 @@
 {% extends 'admin/base_main.html' %}
 
 {% block centro %}
+
+{% block title %}
+<title>Meus Endereços</title>
+{% endblock%}
 {% load static %}
 
 {% if user.is_authenticated %}
