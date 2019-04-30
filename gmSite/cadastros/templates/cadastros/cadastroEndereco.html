@@ -7,6 +7,7 @@
     <div>
         <h3 class="text-center">Cadastrar Endereço</h3>
     </div>
+    {% if user.is_authenticated %}
     <form method="POST">
         <div class="col">
             {% csrf_token %}
@@ -15,6 +16,11 @@
        
         <input type="submit"  class="btn btn-primary" value="Próximo">
     </form>
+    {% else %}
+    <h4 class="bg-danger text-white text-center">
+        <p>Faça o Login, ou Realize o Cadastro!</p>
+    </h4>
+    {% endif %}
 </div>
 
 

@@ -31,11 +31,12 @@
                 <td>{{endereco.numero}}</td>
                 <td>{{endereco.idRua.idBairro.nome}}</td>
             </tr>
-            {% endfor %}
         </tbody>
-
+        {% endfor %}
     </table>
+    
     <a class="btn btn-primary" href="{% url 'cadastros:endereco' %}" role="button">Adicionar Endereço</a>
+
     {% else %}
     <h4 class="bg-danger text-white text-center">
         <p>Nenhum endereco Cadastrado para {{ user.first_name }}!</p>
