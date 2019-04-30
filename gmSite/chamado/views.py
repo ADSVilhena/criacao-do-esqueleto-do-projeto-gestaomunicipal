@@ -26,10 +26,10 @@ class EditarChamados(UpdateView):
     model = Chamados
     form_class = ChamadosForm
     template_name = "chamado/chamados_edit.html"    
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('testeHome')
 
 class AbrirChamado(CreateView):
     model = Chamados
     form_class = ChamadosForm
     template_name = "chamado/chamados_abrir.html"    
-    success_url = reverse_lazy('home')    
+    success_url = reverse_lazy('testeHome')    
