@@ -9,7 +9,7 @@
     <link rel="icon" href="../../../../favicon.ico">
 
     {% block title %}
-        <title>home</title>
+    <title>home</title>
     {% endblock%}
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/dashboard/">
@@ -27,10 +27,12 @@
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{% url 'testeHome' %}">Gestão Municipal</a>
         <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
         <ul class="navbar-nav px-3">
-
+                {% if user.is_authenticated %}
             <li class="nav-item text-nowrap">
-                <a class="nav-link" id="logout" href="{% url 'logout' %}">Sign out</a>
-
+                <a class="nav-link" id="logout" href="{% url 'logout' %}">Sair</a>
+                {% else %}
+                <a class="nav-link" id="logout" href="{% url 'login' %}">Entrar</a>
+                {% endif%}
             </li>
         </ul>
     </nav>
@@ -102,6 +104,7 @@
                                 Todos Os Chamados
                             </a>
                         </li>
+                        
 
                         {% else %}
 
@@ -125,6 +128,7 @@
                                 Login
                             </a>
                         </li>
+
                         {% endif %}
 
                     </ul>
@@ -140,7 +144,7 @@
             </main>
         </div>
     </div>
-    
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -199,16 +203,25 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
+
+
+    {% if user.is_authenticated %}
+
     <script>
-        $(function () {
-         
-            //document.getElementById("logout").innerHTML = "Login"
-            
-        })
+
+        document.querySelector.getElementById('logout').innerHtml = "logout"
+
     </script>
+
+    {% else %}
+
     <script>
-        
+
+        document.querySelector.getElementById('logout').innerHtml = "login"
+
     </script>
+
+    {% endif %}
 </body>
 
 
