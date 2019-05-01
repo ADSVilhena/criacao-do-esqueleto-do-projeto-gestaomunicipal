@@ -23,17 +23,22 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark  bg-dark flex-md-nowrap p-0 shadow">
+    <nav class="navbar navbar-dark  bg-dark flex-md-nowrap p-0 shadow navbar-expand-lg">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{% url 'testeHome' %}">Gestão Municipal</a>
-        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-        <ul class="navbar-nav px-3">
-                {% if user.is_authenticated %}
-            <li class="nav-item text-nowrap">
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Pesquisar" aria-label="Search">
+
+        <ul class="navbar-nav mr-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
                 <a class="nav-link" id="logout" href="{% url 'logout' %}">Sair</a>
                 {% else %}
                 <a class="nav-link" id="logout" href="{% url 'login' %}">Entrar</a>
-                {% endif%}
+
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="logout" href="{%url 'cadastros:cadastrar'%}">Cadastrar</a>
+            </li>
+            {% endif%}
         </ul>
     </nav>
 
@@ -45,6 +50,7 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
+                            <img src="../../static/profile.svg"></img>
                             <a class="nav-link active" href="#">
                                 <span data-feather="home"></span>
                                 Olá, {{ user.first_name }}! <span class="sr-only">(current)</span>
@@ -104,30 +110,13 @@
                                 Todos Os Chamados
                             </a>
                         </li>
-                        
+
 
                         {% else %}
 
 
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{%url 'login'%}">
-                                <span data-feather="home"></span>
-                                Você não está logado!
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{%url 'cadastros:cadastrar'%}">
-                                <span data-feather="file-text"></span>
-                                Cadastrar
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{%url 'login'%}">
-                                <span data-feather="file-text"></span>
-                                Login
-                            </a>
-                        </li>
+
 
                         {% endif %}
 
