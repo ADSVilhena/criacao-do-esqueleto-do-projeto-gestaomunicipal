@@ -31,26 +31,36 @@
     </tbody>
 
     {% endfor %}
-    {% endif %}
-</table>
-<div>
-    <h4 class=" mt-5 bg-danger text-white text-center">
-        <p>Não há Telefones Cadastrados para {{  user.first_name }}!</p>
-    </h4>
 
-</div>
+</table>
+
+
+
 <a class="btn btn-primary" href="{% url 'cadastros:telefone' %}" role="button">Adicionar Telefone</a>
+
 <!--<a href="{% url 'cadastros:telefone' %}">Adicionar telefone</a>-->
+
+
 {% else %}
-<h4 class="bg-danger text-white text-center">
-    <p>Faça o Login, ou realize o cadastro para visualizar a lista de telefones!</p>
-</h4>
+<div class="text-center">
+        <div class="alert alert-danger mt-5">
+                Não há Telefones Cadastrados para {{ user.first_name }}!
+            </div>
+            <a class="btn btn-primary" href="{% url 'cadastros:telefone' %}" role="button">Adicionar Telefone</a>
+</div>
+
+
+
+
 <!---<a href="{% url 'login' %}">login</a>
 <a href="{% url 'cadastros:cadastrar' %}">Cadastrar</a>
 
 -<a class="btn btn-primary" href="{% url 'cadastros:telefone' %}" role="button">Adicionar Telefone</a>
 -<a href="{% url 'cadastros:telefone' %}">Adicionar telefone</a>-->
 {% endif %}
+
+{% endif %}
+
 {% endblock %}
 
 </div>

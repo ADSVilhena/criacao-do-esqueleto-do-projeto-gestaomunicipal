@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+{% load static %}
 
 <head>
     <meta charset="utf-8">
@@ -50,7 +51,8 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <img src="../../static/profile.svg"></img>
+
+                            <!----<img src="{% static 'profile.svg' %}">-->
                             <a class="nav-link active" href="#">
                                 <span data-feather="home"></span>
                                 Olá, {{ user.first_name }}! <span class="sr-only">(current)</span>
@@ -111,19 +113,11 @@
                             </a>
                         </li>
 
-
                         {% else %}
 
-
-
-
-
                         {% endif %}
-
                     </ul>
-
                 </div>
-
             </nav>
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 {% block centro%}
@@ -133,6 +127,11 @@
             </main>
         </div>
     </div>
+
+    <!---<footer class="site-footer" style=" position: fixed; width: 100%; height:50px; background: #343a40;">
+        <p class="text-center text-light pt-2 ">© Todos os direitos reservados-2020 </p>
+    </footer>-->
+
 
 
     <!-- Bootstrap core JavaScript
@@ -194,23 +193,7 @@
 
 
 
-    {% if user.is_authenticated %}
 
-    <script>
-
-        document.querySelector.getElementById('logout').innerHtml = "logout"
-
-    </script>
-
-    {% else %}
-
-    <script>
-
-        document.querySelector.getElementById('logout').innerHtml = "login"
-
-    </script>
-
-    {% endif %}
 </body>
 
 

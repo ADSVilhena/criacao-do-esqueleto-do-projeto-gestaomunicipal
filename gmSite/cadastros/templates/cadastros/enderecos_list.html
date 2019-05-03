@@ -1,4 +1,3 @@
-
 {% extends 'admin/base_main.html' %}
 
 {% block centro %}
@@ -34,15 +33,18 @@
         </tbody>
         {% endfor %}
     </table>
-    
+
     <a class="btn btn-primary" href="{% url 'cadastros:endereco' %}" role="button">Adicionar Endereço</a>
 
     {% else %}
-    <h4 class="bg-danger text-white text-center">
-        <p>Nenhum endereco Cadastrado para {{ user.first_name }}!</p>
-    </h4>
-    </ul>
-    <a class="btn btn-primary" href="{% url 'cadastros:endereco' %}" role="button">Adicionar Endereço</a>
+    <div class="text-center">
+        <div class="alert alert-danger mt-5">
+            Não há Endereços Cadastrados para {{ user.first_name }}!
+        </div>
+        </ul>
+        <a class="btn btn-primary" href="{% url 'cadastros:endereco' %}" role="button">Adicionar Endereço</a>
+    </div>
+
     {% endif %}
     {% endif %}
 </div>
