@@ -82,13 +82,9 @@ STATICFILES_DIRS = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'vha',
-        'USER': 'suporte',
-        'PASSWORD': 'dalbem88',
-        'HOST': 'localhost',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'vhaDb',
+        
     }
 }
 
@@ -131,7 +127,7 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'gmSite/static/'),
-    '/var/www/static/',
+   
 
 ]
 STATIC_URL = '/static/'

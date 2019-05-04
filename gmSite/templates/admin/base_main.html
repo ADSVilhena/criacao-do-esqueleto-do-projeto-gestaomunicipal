@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-{% load static %}
+{% load staticfiles %}
 
 <head>
     <meta charset="utf-8">
@@ -51,81 +51,88 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-
-                            <!----<img src="{% static 'profile.svg' %}">-->
                             <a class="nav-link active" href="#">
-                                <span data-feather="home"></span>
-                                Olá, {{ user.first_name }}! <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'cadastros:atualizar' user.id %}">
-                                <span data-feather="users"></span>
-                                Atualizar Meus Dados
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'cadastros:listar_enderecos' user.id  %}">
                                 <span></span>
-                                Meus Endereços
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'cadastros:listar_telefones' user.id %}">
-                                <span data-feather="phone"></span>
-                                Meus Telefones
-                            </a>
-                        </li>
+                                <div style=" display: flex;">
+                                    <div>
+                                        <img style="width:60px;" src="{% static 'profile.svg' %}">
+                                    </div>
+                                    <div>
+                                        Olá,<br>{{ user.first_name }}! <span class="sr-only">(current)</span>
+                                    </div>
 
-                    </ul>
-
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Meus Chamados</span>
-                        <a class="d-flex align-items-center text-muted"
-                            href="{% url 'chamados:abrir_chamado' user.id %}">
-                            <span data-feather="plus-circle"></span>
-                        </a>
-                    </h6>
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Abertos
+                                </div>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Em Andamento
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Concluídos
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'chamados:listar_chamados' user.id %}">
-                                <span data-feather="file-text"></span>
-                                Todos Os Chamados
-                            </a>
-                        </li>
-
-                        {% else %}
-
-                        {% endif %}
                     </ul>
                 </div>
-            </nav>
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                {% block centro%}
 
-                {% endblock%}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cadastros:atualizar' user.id %}">
+                        <span data-feather="users"></span>
+                        Atualizar Meus Dados
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cadastros:listar_enderecos' user.id  %}">
+                        <span></span>
+                        Meus Endereços
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cadastros:listar_telefones' user.id %}">
+                        <span data-feather="phone"></span>
+                        Meus Telefones
+                    </a>
+                </li>
 
-            </main>
+                </ul>
+
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>Meus Chamados</span>
+                    <a class="d-flex align-items-center text-muted" href="{% url 'chamados:abrir_chamado' user.id %}">
+                        <span data-feather="plus-circle"></span>
+                    </a>
+                </h6>
+                <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="file-text"></span>
+                            Abertos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="file-text"></span>
+                            Em Andamento
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="file-text"></span>
+                            Concluídos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'chamados:listar_chamados' user.id %}">
+                            <span data-feather="file-text"></span>
+                            Todos Os Chamados
+                        </a>
+                    </li>
+
+                    {% else %}
+
+                    {% endif %}
+                </ul>
         </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            {% block centro%}
+
+            {% endblock%}
+
+        </main>
+    </div>
     </div>
 
     <!---<footer class="site-footer" style=" position: fixed; width: 100%; height:50px; background: #343a40;">
