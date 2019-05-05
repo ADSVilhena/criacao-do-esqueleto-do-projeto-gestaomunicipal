@@ -12,7 +12,7 @@ class PessoaUserForm(UserCreationForm):
         self.fields['username'].widget.attrs = {'class':'form-group form-control','type':'text','placeholder':'CPF'}
         self.fields['email'].widget.attrs = {'class':'form-group form-control','type':'mail','placeholder':'E-mail'}
         self.fields['password1'].widget.attrs = {'class':'form-group form-control','type':'password','placeholder':'Senha'}
-        self.fields['password2'].widget.attrs = {'class':'form-group form-control','type':'password','placeholder':'Repita a Senha'}
+        self.fields['password2'].widget.attrs = {'class':'form-group form-control','type':'password','placeholder':'Repita a senha'}
     class Meta:
         model = User
         fields = ('first_name','last_name','username','email','password1', 'password2')
@@ -23,8 +23,8 @@ class CadastroEnderecoForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CadastroEnderecoForm, self).__init__(*args, **kwargs)
        #self.fields['idRua'].widget.attrs = {'class':'form-group form-control', 'type':'text', 'placeholder':'idRua'}
-        self.fields['numero'].widget.attrs = {'class':'forms''form-group form-control', 'type':'text', 'placeholder':'numero da Rua'}
-        self.fields['complemento'].widget.attrs = {'class':'form-group form-control', 'type':'text', 'placeholder':'complemento'}
+        self.fields['numero'].widget.attrs = {'class':'forms''form-group form-control', 'type':'text', 'placeholder':'Número do imóvel'}
+        self.fields['complemento'].widget.attrs = {'class':'form-group form-control', 'type':'text', 'placeholder':'Complemento'}
         #self.fields['idPessoa'].widget.attrs = {'class':'form-group form-control', 'type':'text'}
 
     class Meta:
