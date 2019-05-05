@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from .forms import CadastroEnderecoForm,CadastroTelefoneForm, PessoaUserForm
+from .forms import CadastroEnderecoForm,CadastroTelefoneForm, PessoaUserForm, PessoaUserFormUpdate
 from .models import Endereco, Telefone
 
 def index(request):
@@ -31,7 +31,7 @@ class CriarCadastro(CreateView):
 
 class AtualizarCadastro(UpdateView):
     model = User
-    form_class = PessoaUserForm
+    form_class = PessoaUserFormUpdate
     template_name = "cadastros/cadastro.html"    
     success_url = reverse_lazy('testeHome')
 
