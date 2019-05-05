@@ -73,6 +73,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{% url 'password_change' %}">
+                                <span data-feather="lock"></span>
+                                Trocar minha senha
+                            </a>
+                        </li>                        
+                        <li class="nav-item">
                             <a class="nav-link" href="{% url 'cadastros:listar_enderecos' user.id  %}">
                                 <span data-feather="map"></span>
                                 Meus Endereços

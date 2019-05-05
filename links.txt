@@ -1,3 +1,9 @@
 #Tipos de dados do Django
 
 https://www.webforefront.com/django/modeldatatypesandvalidation.html
+
+
+
+
+https://feathericons.com/
+link para os ícones do menu
