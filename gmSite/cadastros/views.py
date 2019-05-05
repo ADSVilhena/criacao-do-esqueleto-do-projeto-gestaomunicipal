@@ -22,7 +22,7 @@ def manterEndereco(request):
         address_form = CadastroEnderecoForm(request.POST)
         if address_form.is_valid():
             address_form.save()
-            return render(request, 'cadastros/enderecos_list.html')
+            return redirect('cadastros:enderecosList')
         else:
             context = {'address_form': address_form,'ruas': ruas}
             return render(request, 'cadastros/addAddress.html', context)
@@ -42,7 +42,7 @@ def manterTelefone(request):
         phone_form = CadastroTelefoneForm(request.POST)
         if phone_form.is_valid():
             phone_form.save()
-            return render(request, 'cadastros/telefones_list.html')
+            return redirect('cadastros:telefonesList')
         else:
             context = {'phone_form': phone_form,'tipos': tipos}
             return render(request, 'cadastros/addPhone.html', context)
