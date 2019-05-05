@@ -92,7 +92,7 @@ class AtualizarEndereco(UpdateView):
 class DeletarEndereco(DeleteView):
     model = Endereco
     template_name = "cadastros/endereco_confirm_delete.html"
-    success_url = reverse_lazy('testeHome')
+    success_url = reverse_lazy('cadastros:enderecosList')
 
 class CriarTelefone(CreateView):
     model = Telefone
@@ -111,7 +111,7 @@ class AtualizarTelefone(UpdateView):
 class DeletarTelefone(DeleteView):
     model = Telefone
     template_name = "cadastros/telefone_confirm_delete.html"
-    success_url = reverse_lazy('testeHome')
+    success_url = reverse_lazy('cadastros:telefonesList')
 
 
 class ListarEnderecos(ListView):
