@@ -1,0 +1,49 @@
+{% extends 'admin/base_main.html' %}
+{% block title %}
+<title>Cadastrar Endereço</title>
+{% endblock%}
+{% block centro %}
+<div class="mt-3 pt-3">
+    <div>
+        <h3 class="text-center"></h3>
+    </div>
+    {% if user.is_authenticated %}
+    <form method="POST">
+        <div class="col">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="idRua">Ruas</label>
+                <select class="form-control" id="idRua" name="idRua">
+                    {% for rua in ruas %}
+                    <option value="{{rua.pk}}">{{ rua }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="numero">Número</label>
+                <input type="text" class="form-control" id="numero" name="numero"
+                    placeholder="Digite o número do imóvel" />
+            </div>
+            <div class="form-group">
+                <label for="complemento">Complemento</label>
+                <input type="text" class="form-control" id="complemento" name="complemento"
+                    placeholder="Digite o complemento do imóvel" />
+            </div>
+            <div class="d-none">
+                <label for="idPessoa">Cadastrador do Imóvel</label>
+                <select class="form-control" id="idPessoa" name="idPessoa">
+                    <option value="{{user.pk}}">{{ user }}</option>
+                </select>
+            </div>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Próximo">
+    </form>
+    {% else %}
+    <div class="alert alert-danger">
+        Faça o Login, ou Realize o Cadastro!
+    </div>
+    {% endif %}
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+{% endblock %}

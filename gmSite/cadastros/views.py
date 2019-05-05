@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from .forms import CadastroEnderecoForm,CadastroTelefoneForm, PessoaUserForm, PessoaUserFormUpdate
-from .models import Endereco, Telefone
+from .models import Endereco, Telefone, Rua
 
 def index(request):
     if not request.user.is_authenticated:
@@ -15,6 +15,21 @@ def index(request):
 
 def sucesso(request):
     return render(request,'cadastros/sucesso.html')
+
+def manterEndereco(request):
+    ruas = Rua.objects.all()
+    if request.method == 'POST':
+        address_form = CadastroEnderecoForm(request.POST)
+        if address_form.is_valid():
+            address_form.save()
+            return render(request, 'cadastros/enderecos_list.html')
+        else:
+            context = {'address_form': address_form,'ruas': ruas}
+            return render(request, 'cadastros/addAddress.html', context)
+    else:
+        address_form = CadastroEnderecoForm()
+        context = {'address_form': address_form,'ruas': ruas}
+        return render(request, 'cadastros/addAddress.html', context)
 
 
 class ListarCadastro(ListView):
@@ -41,7 +56,6 @@ class CriarEndereco(CreateView):
     form_class = CadastroEnderecoForm
     template_name = "cadastros/cadastroEndereco.html"
     success_url = reverse_lazy("testeHome")
-
 
 class AtualizarEndereco(UpdateView):
     model = Endereco

@@ -33,10 +33,10 @@ class PessoaUserFormUpdate(forms.ModelForm):
 class CadastroEnderecoForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CadastroEnderecoForm, self).__init__(*args, **kwargs)
-       #self.fields['idRua'].widget.attrs = {'class':'form-group form-control', 'type':'text', 'placeholder':'idRua'}
+        self.fields['idRua'].widget.attrs = {'class':'form-group form-control', 'type':'text', 'placeholder':'idRua'}
         self.fields['numero'].widget.attrs = {'class':'forms''form-group form-control', 'type':'text', 'placeholder':'Número do imóvel'}
         self.fields['complemento'].widget.attrs = {'class':'form-group form-control', 'type':'text', 'placeholder':'Complemento'}
-        #self.fields['idPessoa'].widget.attrs = {'class':'form-group form-control', 'type':'text'}
+        self.fields['idPessoa'].widget.attrs = {'class':'form-group form-control', 'type':'hidden'}
 
     class Meta:
         model = Endereco
