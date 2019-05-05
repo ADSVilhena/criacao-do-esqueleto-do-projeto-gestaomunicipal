@@ -44,7 +44,7 @@
 
 <div class="container text-center mt-5">
         <div class="alert alert-danger mt-5">
-                Não há Chamados Cadastrados para {{ user.first_name }}!
+                Nenhum chamado para {{ user.first_name }} com esse filtro!
             </div>
     <a class="btn btn-primary mt-2" href="{% url 'chamados:abrir_chamado' user.id %}">Abrir chamado</a>
 
