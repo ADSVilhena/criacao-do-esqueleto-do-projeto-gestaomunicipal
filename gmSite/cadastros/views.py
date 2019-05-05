@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from .forms import CadastroEnderecoForm,CadastroTelefoneForm, PessoaUserForm, PessoaUserFormUpdate
-from .models import Endereco, Telefone, Rua
+from .models import Endereco, Telefone, Rua, TipoTelefone
 
 def index(request):
     if not request.user.is_authenticated:
@@ -30,6 +30,32 @@ def manterEndereco(request):
         address_form = CadastroEnderecoForm()
         context = {'address_form': address_form,'ruas': ruas}
         return render(request, 'cadastros/addAddress.html', context)
+
+def enderecosList(request):
+    enderecos_list = Endereco.objects.filter(idPessoa_id=request.user.id)
+    context = {'enderecos_list': enderecos_list}
+    return render(request, 'cadastros/listAddress.html', context)
+
+def manterTelefone(request):
+    tipos = TipoTelefone.objects.all()
+    if request.method == 'POST':
+        phone_form = CadastroTelefoneForm(request.POST)
+        if phone_form.is_valid():
+            phone_form.save()
+            return render(request, 'cadastros/telefones_list.html')
+        else:
+            context = {'phone_form': phone_form,'tipos': tipos}
+            return render(request, 'cadastros/addPhone.html', context)
+    else:
+        phone_form = CadastroEnderecoForm()
+        context = {'phone_form': phone_form,'tipos': tipos}
+        return render(request, 'cadastros/addPhone.html', context)
+
+
+def telefonesList(request):
+    telefones_list = Telefone.objects.filter(idPessoa_id=request.user.id)
+    context = {'telefones_list': telefones_list}
+    return render(request, 'cadastros/listPhone.html', context)
 
 
 class ListarCadastro(ListView):
@@ -63,6 +89,10 @@ class AtualizarEndereco(UpdateView):
     template_name = "cadastros/cadastroEndereco.html"
     success_url = reverse_lazy('testeHome')    
 
+class DeletarEndereco(DeleteView):
+    model = Endereco
+    template_name = "cadastros/endereco_confirm_delete.html"
+    success_url = reverse_lazy('testeHome')
 
 class CriarTelefone(CreateView):
     model = Telefone

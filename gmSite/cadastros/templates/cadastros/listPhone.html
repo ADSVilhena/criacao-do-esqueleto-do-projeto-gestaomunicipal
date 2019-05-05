@@ -1,0 +1,81 @@
+{% extends 'admin/base_main.html' %}
+{% block title %}
+<title>Meus Telefones</title>
+{% endblock%}
+
+{% block centro %}
+{% if user.is_authenticated %}
+{% if telefones_list %}
+<div class="mt-3">
+    <h3 class="text-center ">Meus Telefones</h3>
+</div>
+<table class="table mt-5">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">NÚMERO</th>
+            <th scope="col">TIPO</th>
+            <th scope="col">AÇÕES</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for telefone in telefones_list %}
+        <tr>
+            <td>{{telefone.id}}</td>
+            <td>{{telefone.numero}}</td>
+            <td>{{telefone.idTipoTelefone.descricao}}</td>
+            <td>
+                <a class="btn btn-danger" href="{% url 'cadastros:telefone_deletar' telefone.id %}">Deletar</a>
+                <a class="btn btn-primary" href="{% url 'cadastros:telefone_atualizar' telefone.id %}">Editar</a>
+            </td>
+        </tr>
+    </tbody>
+
+    {% endfor %}
+
+</table>
+
+
+
+<a class="btn btn-primary" href="{% url 'cadastros:telefone' %}" role="button">Adicionar Telefone</a>
+
+<!--<a href="{% url 'cadastros:telefone' %}">Adicionar telefone</a>-->
+
+
+{% else %}
+<div class="text-center">
+        <div class="alert alert-danger mt-5">
+                Não há telefones cadastrados para {{ user.first_name }}!
+            </div>
+            <a class="btn btn-primary" href="{% url 'cadastros:telefone' %}" role="button">Adicionar Telefone</a>
+</div>
+
+
+
+
+<!---<a href="{% url 'login' %}">login</a>
+<a href="{% url 'cadastros:cadastrar' %}">Cadastrar</a>
+
+-<a class="btn btn-primary" href="{% url 'cadastros:telefone' %}" role="button">Adicionar Telefone</a>
+-<a href="{% url 'cadastros:telefone' %}">Adicionar telefone</a>-->
+{% endif %}
+
+{% endif %}
+
+{% endblock %}
+
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -10,7 +10,7 @@
 <table class="table mt-5">
     <thead>
         <tr>
-            <!---<th  scope="col">ID</th>-->
+            <th  scope="col">ID</th>
             <th  scope="col">ÓRGÃO</th>
             <th  scope="col">SERVIÇO</th>
             <th  scope="col">ENDEREÇO</th>
@@ -18,13 +18,13 @@
             <th  scope="col">FECHAMENTO</th>
             <th  scope="col">OBSERVAÇÃO</th>
             <th scope="col">STATUS</th>
-            <th  scope="col">AÇÂO</th>
+            <th  scope="col">AÇÃO</th>
         </tr>
     </thead>
 
     {% for chamado in chamados_list %}
     <tr>
-        <!---<td class=""><a class=""  href="{% url 'chamados:editar_chamado' chamado.id %}">{{chamado.id}}</a></td>-->
+        <td>{{chamado.id}}</td>
         <td>{{chamado.idEvento.idOrgao.nome}}</td>
         <td>{{chamado.idEvento.descricao}}</td>
         <td>{{chamado.idEndereco.idRua.nome}}, {{chamado.idEndereco.numero}} -
@@ -34,7 +34,7 @@
         <td>{{chamado.observacao}}</td>
         <td>{{chamado.idStatus.descricao}}</td>
 
-        <td><a class="btn text-danger " href="{% url 'chamados:editar_chamado' chamado.id %}"{{chamado.id}}>Alterar Chamado </a></td>
+        <td><a class="btn btn-primary" href="{% url 'chamados:editar_chamado' chamado.id %}"{{chamado.id}}>Alterar</a></td>
     </tr>
     {% endfor %}
 </table>

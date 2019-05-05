@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
 {% load staticfiles %}
 
 <head>
@@ -79,13 +79,13 @@
                             </a>
                         </li>                        
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'cadastros:listar_enderecos' user.id  %}">
+                            <a class="nav-link" href="{% url 'cadastros:enderecosList'  %}">
                                 <span data-feather="map"></span>
                                 Meus Endereços
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'cadastros:listar_telefones' user.id %}">
+                            <a class="nav-link" href="{% url 'cadastros:telefonesList'%}">
                                 <span data-feather="phone"></span>
                                 Meus Telefones
                             </a>

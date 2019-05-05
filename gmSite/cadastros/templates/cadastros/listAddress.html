@@ -32,6 +32,7 @@
                 <td>{{endereco.idRua.idBairro.nome}}</td>
                 <td>
                     <a class="btn btn-danger" href="{% url 'cadastros:endereco_deletar' endereco.id %}">Deletar</a>
+                    <a class="btn btn-primary" href="{% url 'cadastros:endereco_atualizar' endereco.id %}">Editar</a>
                 </td>
             </tr>
         </tbody>
@@ -43,10 +44,12 @@
     {% else %}
     <div class="text-center">
         <div class="alert alert-danger mt-5">
-            Não há Endereços Cadastrados para {{ user.first_name }}!
+            Não há endereços cadastrados para {{ user.first_name }}!
         </div>
         </ul>
         <a class="btn btn-primary" href="{% url 'cadastros:endereco' %}" role="button">Adicionar Endereço</a>
+
+
     </div>
 
     {% endif %}

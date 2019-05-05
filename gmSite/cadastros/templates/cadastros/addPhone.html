@@ -1,0 +1,47 @@
+{% extends 'admin/base_main.html' %}
+{% block title %}
+<title>Cadastrar Telefone</title>
+{% endblock%}
+{% block centro %}
+<div class="mt-3">
+    <div class="mt-3">
+        <h3 class="text-center">Cadastrar Número de Telefone</h3>
+    </div>
+    <div class="mt-3">
+        {% if user.is_authenticated %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="idTipoTelefone">Tipo de Telefone</label>
+                <select class="form-control" id="idTipoTelefone" name="idTipoTelefone">
+                    {% for tipo in tipos %}
+                    <option value="{{tipo.pk}}">{{ tipo }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="numero">Número de Telefone</label>
+                <input type="text" class="form-control" id="numero" name="numero"
+                    placeholder="Digite o número do telefone" />
+            </div>
+            <div class="d-none">
+                <label for="idPessoa">Usuário</label>
+                <select class="form-control" id="idPessoa" name="idPessoa">
+                    <option value="{{user.pk}}">{{ user }}</option>
+                </select>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Próximo">
+        </form>
+
+        {% else%}
+
+        <div class="alert alert-danger">
+            Faça Login, ou realize o cadastro para visualizar a lista de telefones!
+        </div>
+        {% endif %}
+        </body>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </div>
+</div>
+
+{% endblock %}
