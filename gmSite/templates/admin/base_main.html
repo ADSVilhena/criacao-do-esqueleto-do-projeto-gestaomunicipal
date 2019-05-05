@@ -97,19 +97,19 @@
                     </h6>
                     <ul class="nav flex-column mb-2">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{% url 'chamados:filtrar_chamados' user.id 1 %}">
                                 <span data-feather="file-text"></span>
                                 Abertos
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{% url 'chamados:filtrar_chamados' user.id 2 %}">
                                 <span data-feather="file-text"></span>
                                 Em Andamento
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{% url 'chamados:filtrar_chamados' user.id 3 %}">
                                 <span data-feather="file-text"></span>
                                 Concluídos
                             </a>

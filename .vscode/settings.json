@@ -1,0 +1,11 @@
+{
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "sqltools.connections": [
+        {
+            "database": "/home/jotapeah/projetos/servicosMunicipais/criacao-do-esqueleto-do-projeto-gestaomunicipal/gmSite/db.sqlite3",
+            "dialect": "SQLite",
+            "name": "db"
+        }
+    ]
+}

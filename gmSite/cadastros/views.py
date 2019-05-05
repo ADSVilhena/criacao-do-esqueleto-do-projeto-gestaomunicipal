@@ -91,7 +91,7 @@ class ListarTelefones(ListView):
     context_object_name = 'telefones_list'
 
     def get_queryset(self, **kwargs):
-        self.idPessoa = get_object_or_404(User, id=self.kwargs['pk'])
+        self.idPessoa = get_object_or_404(User, id=self.kwargs['userID'])
         return Telefone.objects.filter(idPessoa_id=self.idPessoa)
 
     def get_context_data(self, **kwargs):
@@ -100,3 +100,5 @@ class ListarTelefones(ListView):
         # Add in the publisher
         context['idPessoa'] = self.idPessoa
         return context
+
+

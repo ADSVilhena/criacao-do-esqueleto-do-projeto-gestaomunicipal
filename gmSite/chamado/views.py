@@ -22,6 +22,16 @@ class ListarChamados(ListView):
         context['idPessoa'] = self.idPessoa
         return context
 
+class FiltrarChamados(ListView):
+    template_name = "chamado/chamados_list.html"
+    context_object_name = 'chamados_list'
+
+    def get_queryset(self):
+        self.idPessoa = get_object_or_404(User, id=self.kwargs['pk'])
+        self.idStatus = get_object_or_404(Status, id=self.kwargs['statusChamado'])
+        return Chamados.objects.filter(idPessoa_id=self.idPessoa,idStatus_id=self.idStatus)    
+
+
 class EditarChamados(UpdateView):
     model = Chamados
     form_class = ChamadosForm
