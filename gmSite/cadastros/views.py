@@ -52,6 +52,21 @@ def manterTelefone(request):
         return render(request, 'cadastros/addPhone.html', context)
 
 
+def editarTelefone(request, pk):
+    tipos = TipoTelefone.objects.all()
+    telefone = get_object_or_404(Telefone, id=pk)
+    if request.method == 'POST':
+        phone_form = CadastroTelefoneForm(request.POST)
+        if phone_form.is_valid():
+            phone_form.save()
+            return redirect('cadastros:telefonesList')
+        else:
+            HttpResponse("Grosope")
+    else:
+        edit_form = CadastroTelefoneForm(instance=telefone)
+        context = {'edit_form': edit_form, 'tipos': tipos}
+        return render(request, 'cadastros/addPhone.html', context)
+
 def telefonesList(request):
     telefones_list = Telefone.objects.filter(idPessoa_id=request.user.id)
     context = {'telefones_list': telefones_list}
