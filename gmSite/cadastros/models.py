@@ -43,7 +43,7 @@ class Telefone(models.Model):
         return self.idPessoa.first_name + " - " + self.numero
 
 
-
+    
 
 def get_first_name(self):
     return self.first_name

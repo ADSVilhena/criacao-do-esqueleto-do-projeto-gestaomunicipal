@@ -36,6 +36,23 @@ def enderecosList(request):
     context = {'enderecos_list': enderecos_list}
     return render(request, 'cadastros/listAddress.html', context)
 
+def meusTelefones(request, idTelefone=None):
+    tipos = TipoTelefone.objects.all()
+    if idTelefone:
+        meuTelefone = get_object_or_404(Telefone, id=idTelefone)
+    else:
+        meuTelefone = None
+
+    if request.method == 'POST':
+        formEdit = CadastroTelefoneForm(request.POST, instance=meuTelefone)
+        if formEdit.is_valid():
+            formEdit.save()
+            return redirect('cadastros:telefonesList')
+    else:
+        formEdit = meuTelefone
+        context = {'formEdit': formEdit,'tipos':tipos}
+    return render(request, 'cadastros/addPhone.html', context)
+
 def manterTelefone(request):
     tipos = TipoTelefone.objects.all()
     if request.method == 'POST':
