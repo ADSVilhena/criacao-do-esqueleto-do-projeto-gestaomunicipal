@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('add/', views.CriarCadastro.as_view(), name='cadastrar'),
     path('edit/<int:pk>', views.AtualizarCadastro.as_view(), name='atualizar'),
+    path('streetSearch/', views.listarRuas, name='listarRuas'),
     path('address/', views.manterEndereco, name='endereco'),
     path('address/listar/<int:pk>',
          views.ListarEnderecos.as_view(), name='listar_enderecos'),

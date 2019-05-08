@@ -90,6 +90,11 @@ def telefonesList(request):
     return render(request, 'cadastros/listPhone.html', context)
 
 
+def listarRuas(request):
+    ruas_list = Rua.objects.all()
+    context = {'ruas_list':ruas_list}
+    return render(request, 'cadastros/streetSearch.html', context)
+
 class ListarCadastro(ListView):
     model = User
     context_object_name = 'usuario'

@@ -14,7 +14,7 @@ class Rua(models.Model):
     idBairro = models.ForeignKey(Bairro, on_delete=models.CASCADE,verbose_name="BAIRRO")
 
     def __str__(self):
-        return self.nome   
+        return self.nome + " - " + self.idBairro.nome   
 
 class Endereco(models.Model):
     idRua = models.ForeignKey(Rua, on_delete=models.CASCADE,verbose_name="RUA")
