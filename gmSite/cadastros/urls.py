@@ -8,8 +8,8 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('add/', views.CriarCadastro.as_view(), name='cadastrar'),
     path('edit/<int:pk>', views.AtualizarCadastro.as_view(), name='atualizar'),
-    path('streetSearch/', views.listarRuas, name='listarRuas'),
-    path('address/', views.manterEndereco, name='endereco'),
+    path('address/<int:idRua>', views.manterEndereco, name='endereco'),
+    path('rua/<int:idRua>', views.ruaSelecionada, name='ruaSelecionada'),
     path('address/listar/<int:pk>',
          views.ListarEnderecos.as_view(), name='listar_enderecos'),
     path('address/listar/',
@@ -28,4 +28,6 @@ urlpatterns = [
     path('phone/listar/',
          views.telefonesList, name='telefonesList'),
     path('success', views.sucesso, name='sucesso'),
+    path('ajax-search/<str:search_string>', views.home_ajax_search, name='pesquisa'),
+    path('ajax-search/', views.home_ajax_search, name='pesquisa'),
 ]

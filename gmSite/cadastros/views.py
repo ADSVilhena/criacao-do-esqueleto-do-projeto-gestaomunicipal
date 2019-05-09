@@ -2,10 +2,12 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
+from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from .forms import CadastroEnderecoForm,CadastroTelefoneForm, PessoaUserForm, PessoaUserFormUpdate
+from .forms import CadastroEnderecoForm, CadastroTelefoneForm, PessoaUserForm, PessoaUserFormUpdate
 from .models import Endereco, Telefone, Rua, TipoTelefone
+
 
 def index(request):
     if not request.user.is_authenticated:
@@ -13,8 +15,10 @@ def index(request):
     else:
         return HttpResponse("Cadastros")
 
+
 def sucesso(request):
-    return render(request,'cadastros/sucesso.html')
+    return render(request, 'cadastros/sucesso.html')
+
 
 def manterEndereco(request):
     ruas = Rua.objects.all()
@@ -24,17 +28,39 @@ def manterEndereco(request):
             address_form.save()
             return redirect('cadastros:enderecosList')
         else:
-            context = {'address_form': address_form,'ruas': ruas}
+            context = {'address_form': address_form, 'ruas': ruas}
             return render(request, 'cadastros/addAddress.html', context)
     else:
         address_form = CadastroEnderecoForm()
-        context = {'address_form': address_form,'ruas': ruas}
+        context = {'address_form': address_form, 'ruas': ruas}
         return render(request, 'cadastros/addAddress.html', context)
+
 
 def enderecosList(request):
     enderecos_list = Endereco.objects.filter(idPessoa_id=request.user.id)
     context = {'enderecos_list': enderecos_list}
     return render(request, 'cadastros/listAddress.html', context)
+
+
+def ruaSelecionada(request, idRua=None):
+    if idRua is None:
+        ruaSelecionada = None
+    else:
+        ruaSelecionada = get_object_or_404(Rua, id=idRua)
+        if request.method == 'POST':
+            address_form = CadastroEnderecoForm(request.POST)
+            if address_form.is_valid():
+                address_form.save()
+                return redirect('cadastros:enderecosList')
+            else:
+                context = {'address_form': address_form}
+                return render(request, 'cadastros/addAddress.html', context)
+        else:
+            address_form = CadastroEnderecoForm()
+            context = {'address_form': address_form, 'ruaSelecionada': ruaSelecionada}
+    return render(request, 'cadastros/addAddress.html', context)
+
+
 
 def meusTelefones(request, idTelefone=None):
     tipos = TipoTelefone.objects.all()
@@ -50,8 +76,9 @@ def meusTelefones(request, idTelefone=None):
             return redirect('cadastros:telefonesList')
     else:
         formEdit = meuTelefone
-        context = {'formEdit': formEdit,'tipos':tipos}
+        context = {'formEdit': formEdit, 'tipos': tipos}
     return render(request, 'cadastros/addPhone.html', context)
+
 
 def manterTelefone(request):
     tipos = TipoTelefone.objects.all()
@@ -61,11 +88,11 @@ def manterTelefone(request):
             phone_form.save()
             return redirect('cadastros:telefonesList')
         else:
-            context = {'phone_form': phone_form,'tipos': tipos}
+            context = {'phone_form': phone_form, 'tipos': tipos}
             return render(request, 'cadastros/addPhone.html', context)
     else:
         phone_form = CadastroEnderecoForm()
-        context = {'phone_form': phone_form,'tipos': tipos}
+        context = {'phone_form': phone_form, 'tipos': tipos}
         return render(request, 'cadastros/addPhone.html', context)
 
 
@@ -84,16 +111,23 @@ def editarTelefone(request, pk):
         context = {'edit_form': edit_form, 'tipos': tipos}
         return render(request, 'cadastros/addPhone.html', context)
 
+
 def telefonesList(request):
     telefones_list = Telefone.objects.filter(idPessoa_id=request.user.id)
     context = {'telefones_list': telefones_list}
     return render(request, 'cadastros/listPhone.html', context)
 
 
-def listarRuas(request):
-    ruas_list = Rua.objects.all()
-    context = {'ruas_list':ruas_list}
-    return render(request, 'cadastros/streetSearch.html', context)
+def home_ajax_search(request, search_string=None):
+    if search_string is None:
+        ruas_list = Rua.objects.all()
+    else:
+        ruas_list = Rua.objects.filter(nome__icontains=search_string)
+        paginator = Paginator(ruas_list, 9)
+        page = request.GET.get('page')
+        ruas_list = paginator.get_page(page)
+    return render(request, 'cadastros/streetSearch.html', {'ruas_list': ruas_list})
+
 
 class ListarCadastro(ListView):
     model = User
@@ -110,7 +144,7 @@ class CriarCadastro(CreateView):
 class AtualizarCadastro(UpdateView):
     model = User
     form_class = PessoaUserFormUpdate
-    template_name = "cadastros/cadastro.html"    
+    template_name = "cadastros/cadastro.html"
     success_url = reverse_lazy('testeHome')
 
 
@@ -120,16 +154,19 @@ class CriarEndereco(CreateView):
     template_name = "cadastros/cadastroEndereco.html"
     success_url = reverse_lazy("testeHome")
 
+
 class AtualizarEndereco(UpdateView):
     model = Endereco
     form_class = CadastroEnderecoForm
     template_name = "cadastros/cadastroEndereco.html"
-    success_url = reverse_lazy('testeHome')    
+    success_url = reverse_lazy('testeHome')
+
 
 class DeletarEndereco(DeleteView):
     model = Endereco
     template_name = "cadastros/endereco_confirm_delete.html"
     success_url = reverse_lazy('cadastros:enderecosList')
+
 
 class CriarTelefone(CreateView):
     model = Telefone
@@ -142,7 +179,7 @@ class AtualizarTelefone(UpdateView):
     model = Telefone
     form_class = CadastroTelefoneForm
     template_name = "cadastros/cadastroTelefone.html"
-    success_url = reverse_lazy('testeHome')   
+    success_url = reverse_lazy('testeHome')
 
 
 class DeletarTelefone(DeleteView):
@@ -181,5 +218,3 @@ class ListarTelefones(ListView):
         # Add in the publisher
         context['idPessoa'] = self.idPessoa
         return context
-
-

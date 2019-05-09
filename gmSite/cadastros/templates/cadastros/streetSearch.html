@@ -6,45 +6,50 @@
 {% block centro %}
 {% if user.is_authenticated %}
 {% if ruas_list %}
+<script type="text/javascript">
+    function termoPesquisado() {
+        httpRequest = new XMLHttpRequest();
+        var texto = $('#texttarget').val();
+        window.location.href = '../ajax-search/' + texto
+        console.log(httpRequest);
+        httpRequest.send(null);
+    }
+</script>
 <div class="mt-3">
     <h3 class="text-center ">Pesquisa de ruas</h3>
 </div>
-<div>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Pesquisar" aria-label="Search">
+<div class="">
+    <input id="texttarget" class="form-control form-control-dark w-100" type="text" placeholder="Pesquisar"
+        aria-label="Pesquisar">
+    <p class="btn btn-primary mt-2" onclick="termoPesquisado()">Pesquisar</p>
 </div>
 
-<table class="table mt-5">
-    <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">NOME</th>
-            <th scope="col">BAIRRO</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for rua in ruas_list %}
-        <tr>
-            <td>{{rua.id}}</td>
-            <td>{{rua.nome}}</td>
-            <td>{{rua.idBairro.nome}}</td>
-        </tr>
-    </tbody>
 
-    {% endfor %}
+<div id="ajaxcontent">
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">NOME</th>
+                <th scope="col">BAIRRO</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rua in ruas_list %}
+            <tr>
+                <td><a href="{% url 'cadastros:ruaSelecionada' rua.id %}">{{rua.nome}}</a></td>
+                <td>{{rua.idBairro.nome}}</td>
+            </tr>
+        </tbody>
 
-</table>
+        {% endfor %}
 
-
-
-<a class="btn btn-primary" href="{% url 'cadastros:telefone' %}" role="button">Adicionar Telefone</a>
-
-<!--<a href="{% url 'cadastros:telefone' %}">Adicionar telefone</a>-->
-
+    </table>
+</div>
 
 {% else %}
 <div class="text-center">
     <div class="alert alert-danger mt-5">
-        Não há ruas cadastradas aindas.
+        Não há ruas cadastradas ainda.
     </div>
     <a class="btn btn-primary" href="{% url 'cadastros:enderecosList' %}" role="button">Voltar</a>
 </div>
@@ -67,6 +72,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+
 
 </body>
 

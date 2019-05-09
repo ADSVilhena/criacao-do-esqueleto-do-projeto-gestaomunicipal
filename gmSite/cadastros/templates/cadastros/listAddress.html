@@ -39,7 +39,7 @@
         {% endfor %}
     </table>
 
-    <a class="btn btn-primary" href="{% url 'cadastros:listarRuas' %}" role="button">Adicionar Endereço</a>
+    <a class="btn btn-primary" href="{% url 'cadastros:pesquisa' %}" role="button">Adicionar Endereço</a>
 
     {% else %}
     <div class="text-center">
@@ -47,7 +47,7 @@
             Não há endereços cadastrados para {{ user.first_name }}!
         </div>
         </ul>
-        <a class="btn btn-primary" href="{% url 'cadastros:listarRuas' %}" role="button">Adicionar Endereço</a>
+        <a class="btn btn-primary" href="{% url 'cadastros:pesquisa' %}" role="button">Adicionar Endereço</a>
 
 
     </div>
