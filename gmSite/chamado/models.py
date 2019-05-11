@@ -21,8 +21,8 @@ class Chamados(models.Model):
     idPessoa = models.ForeignKey(User, on_delete=models.CASCADE,verbose_name="PESSOA")
     idEvento = models.ForeignKey(Eventos, on_delete=models.CASCADE,verbose_name="SERVIÇO")
     idEndereco = models.ForeignKey(Endereco, on_delete=models.CASCADE,verbose_name="ENDEREÇO")
-    idStatus = models.ForeignKey(Status, on_delete=models.CASCADE,verbose_name="STATUS")
-    dataAbertura = models.DateField('ABERTO EM',default=None)
+    idStatus = models.ForeignKey(Status, on_delete=models.CASCADE,verbose_name="STATUS",default='1')
+    dataAbertura = models.DateField('ABERTO EM',auto_now_add=True)
     dataFechamento = models.DateField('CONCLUÍDO EM',default=None, blank=True, null=True)
     observacao = models.CharField('OBSERVAÇÃO',max_length=200)
 

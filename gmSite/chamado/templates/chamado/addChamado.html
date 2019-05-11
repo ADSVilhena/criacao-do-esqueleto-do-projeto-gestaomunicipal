@@ -1,0 +1,59 @@
+{% extends 'admin/base_main.html' %}
+{% block title %}
+<title>Abrir chamado</title>
+{% endblock%}
+{% block centro %}
+<div class="mt-3">
+    <div class="mt-3">
+        <h3 class="text-center">Abrir chamado</h3>
+    </div>
+    <div class="mt-3">
+        {% if user.is_authenticated %}
+        <form method="POST">
+            {% csrf_token %}
+
+
+            <div class="form-group">
+                <label for="idEvento">Serviço</label>
+                <select class="form-control" id="idEvento" name="idEvento">
+                    <option value="{{formServico.idEvento.pk}}">{{ formServico.idEvento }}</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="idEndereco">Endereço</label>
+                <select class="form-control" id="idEndereco" name="idEndereco">
+                    <option value="{{formServico.idEndereco.pk}}">{{ formServico.idEndereco }}</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="observacao">Observação</label>
+                <input type="text" class="form-control" id="observacao" name="observacao"
+                    placeholder="Observação" value="{{ formServico.observacao }}" />
+            </div>
+
+
+            <div class="">
+                <label for="idPessoa">Usuário</label>
+                <select class="form-control" id="idPessoa" name="idPessoa">
+                    <option value="{{user.pk}}">{{ user }}</option>
+                </select>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Salvar">
+        </form>
+
+        {% else%}
+
+        <div class="alert alert-danger">
+            Faça Login, ou realize o cadastro para visualizar a lista de telefones!
+        </div>
+        {% endif %}
+        </body>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </div>
+</div>
+
+{% endblock %}
