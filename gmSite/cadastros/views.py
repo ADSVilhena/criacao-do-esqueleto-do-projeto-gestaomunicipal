@@ -44,14 +44,18 @@ def enderecosList(request):
 
 def ruaSelecionada(request, idRua=None, idEndereco='selecionar'):
     if request.method == 'POST':
-        address_form = CadastroEnderecoForm(request.POST)
+        if request.POST.get('pk'):
+            atualizar = get_object_or_404(Endereco, id=request.POST.get('pk'))
+            address_form = CadastroEnderecoForm(request.POST, instance=atualizar)
+        else:
+            address_form = CadastroEnderecoForm(request.POST)
+
         if address_form.is_valid():
             address_form.save()
             return redirect('cadastros:enderecosList')
         else:
-            #context = {'address_form': address_form}
-            #return render(request, 'cadastros/addAddress.html', context)
-            return HttpResponse(request)
+            context = {'address_form': address_form}
+            return render(request, 'cadastros/addAddress.html', context)
     else:
         if idEndereco == 'selecionar':
             ruaSelecionada = get_object_or_404(Rua, id=int(idRua))
@@ -61,7 +65,7 @@ def ruaSelecionada(request, idRua=None, idEndereco='selecionar'):
         else:
             ruaSelecionada = get_object_or_404(Endereco, id=idEndereco)
             address_form = CadastroEnderecoForm()
-            context = {'address_form': address_form, 'ruaSelecionada': ruaSelecionada}
+            context = {'address_form': address_form, 'ruaSelecionada': ruaSelecionada, 'editando': 'yes'}
             return render(request, 'cadastros/addAddress.html', context)
 
 
