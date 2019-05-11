@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label for="idEvento">Serviço</label>
                 <select class="form-control" id="idEvento" name="idEvento">
-                    <option value="{{formServico.idEvento.pk}}">{{ formServico.idEvento }}</option>
+                    <option value="{{evento.pk}}">{{ evento.descricao }}</option>
                 </select>
             </div>
 
@@ -24,17 +24,27 @@
             <div class="form-group">
                 <label for="idEndereco">Endereço</label>
                 <select class="form-control" id="idEndereco" name="idEndereco">
-                    <option value="{{formServico.idEndereco.pk}}">{{ formServico.idEndereco }}</option>
+                    {% for endereco in meusEnderecos %}
+                    <option value="{{endereco.pk}}" {% if endereco.pk == formChamado.idEndereco.id %}
+                        selected="selected" {% endif %}>{{ endereco }}</option>
+                    {% endfor %}
                 </select>
             </div>
 
 
             <div class="form-group">
                 <label for="observacao">Observação</label>
-                <input type="text" class="form-control" id="observacao" name="observacao"
-                    placeholder="Observação" value="{{ formServico.observacao }}" />
+                <input type="text" class="form-control" id="observacao" name="observacao" placeholder="Observação"
+                    value="{{formChamado.observacao}}" />
             </div>
 
+
+            <div class="form-group">
+                <label for="idStatus">Status</label>
+                <select class="form-control" id="idStatus" name="idStatus">
+                    <option value="1">Aberto</option>
+                </select>
+            </div>
 
             <div class="">
                 <label for="idPessoa">Usuário</label>

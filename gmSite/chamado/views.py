@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from .models import Chamados, Status, Eventos
+from .models import Chamados, Status, Eventos, Endereco
 from .forms import ChamadosForm
 
 
@@ -62,13 +62,18 @@ def home_ajax_search(request, search_string=None):
     return render(request, 'chamado/servicoSearch.html', {'servicos_list': servicos_list})
 
 
-def chamados(request):
+def chamados(request,idEvento=None,idChamado='selecionar'):
+    meusEnderecos = Endereco.objects.filter(idPessoa_id=request.user.id)
+    evento = get_object_or_404(Eventos, pk=idEvento)
     if request.method == 'POST':
-        form = ChamadosForm(request.POST)
-        if form.is_valid():
-            form.save()
+        formChamado = ChamadosForm(request.POST)
+        if formChamado.is_valid():
+            formChamado.save()
             return redirect('chamado:listar_chamados')
+        else:
+            return HttpResponse(formChamado.errors)
     else:
-        form = ChamadosForm()
-        context = {'form': form}
-    return render(request, 'chamado/addChamado.html', context)
+        formChamado = ChamadosForm()
+        context = {'formChamado': formChamado, 'meusEnderecos': meusEnderecos, 'evento': evento}
+        return render(request, 'chamado/addChamado.html', context)
+        #return HttpResponse(evento.id)
