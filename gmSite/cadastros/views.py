@@ -42,23 +42,27 @@ def enderecosList(request):
     return render(request, 'cadastros/listAddress.html', context)
 
 
-def ruaSelecionada(request, idRua=None):
-    if idRua is None:
-        ruaSelecionada = None
-    else:
-        ruaSelecionada = get_object_or_404(Rua, id=idRua)
-        if request.method == 'POST':
-            address_form = CadastroEnderecoForm(request.POST)
-            if address_form.is_valid():
-                address_form.save()
-                return redirect('cadastros:enderecosList')
-            else:
-                context = {'address_form': address_form}
-                return render(request, 'cadastros/addAddress.html', context)
+def ruaSelecionada(request, idRua=None, idEndereco='selecionar'):
+    if request.method == 'POST':
+        address_form = CadastroEnderecoForm(request.POST)
+        if address_form.is_valid():
+            address_form.save()
+            return redirect('cadastros:enderecosList')
         else:
+            #context = {'address_form': address_form}
+            #return render(request, 'cadastros/addAddress.html', context)
+            return HttpResponse(request)
+    else:
+        if idEndereco == 'selecionar':
+            ruaSelecionada = get_object_or_404(Rua, id=int(idRua))
             address_form = CadastroEnderecoForm()
             context = {'address_form': address_form, 'ruaSelecionada': ruaSelecionada}
-    return render(request, 'cadastros/addAddress.html', context)
+            return render(request, 'cadastros/addAddress.html', context)
+        else:
+            ruaSelecionada = get_object_or_404(Endereco, id=idEndereco)
+            address_form = CadastroEnderecoForm()
+            context = {'address_form': address_form, 'ruaSelecionada': ruaSelecionada}
+            return render(request, 'cadastros/addAddress.html', context)
 
 
 

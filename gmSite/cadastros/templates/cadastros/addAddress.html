@@ -9,8 +9,10 @@
     </div>
     {% if user.is_authenticated %}
     <form method="POST">
+            {{ form.errors }} {{ form.non_field_errors }}
         <div class="col">
             {% csrf_token %}
+            
             <div class="form-group">
                 <label for="idRua">Ruas</label>
                 <select class="form-control" id="idRua" name="idRua">

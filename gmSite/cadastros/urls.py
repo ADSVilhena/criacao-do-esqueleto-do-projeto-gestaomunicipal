@@ -9,7 +9,7 @@ urlpatterns = [
     path('add/', views.CriarCadastro.as_view(), name='cadastrar'),
     path('edit/<int:pk>', views.AtualizarCadastro.as_view(), name='atualizar'),
     path('address/<int:idRua>', views.manterEndereco, name='endereco'),
-    path('rua/<int:idRua>', views.ruaSelecionada, name='ruaSelecionada'),
+    path('rua/<int:idRua>/<str:idEndereco>', views.ruaSelecionada, name='ruaSelecionada'),
     path('address/listar/<int:pk>',
          views.ListarEnderecos.as_view(), name='listar_enderecos'),
     path('address/listar/',

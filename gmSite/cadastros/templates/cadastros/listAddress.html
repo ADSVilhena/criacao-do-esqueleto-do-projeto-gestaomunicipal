@@ -19,6 +19,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">RUA</th>
                 <th scope="col">NÚMERO</th>
+                <th scope="col">COMPLEMENTO</th>
                 <th scope="col">BAIRRO</th>
                 <th scope="col">AÇÕES</th>
             </tr>
@@ -29,10 +30,11 @@
                 <td><a href="{% url 'cadastros:endereco_atualizar' endereco.id %}"></a>{{endereco.id}}</td>
                 <td>{{endereco.idRua.nome}}</td>
                 <td>{{endereco.numero}}</td>
+                <td>{{endereco.complemento}}</td>
                 <td>{{endereco.idRua.idBairro.nome}}</td>
                 <td>
                     <a class="btn btn-danger" href="{% url 'cadastros:endereco_deletar' endereco.id %}">Deletar</a>
-                    <a class="btn btn-primary" href="{% url 'cadastros:endereco_atualizar' endereco.id %}">Editar</a>
+                    <a class="btn btn-primary" href="{% url 'cadastros:ruaSelecionada' endereco.idRua.id endereco.id %}">Editar</a>
                 </td>
             </tr>
         </tbody>

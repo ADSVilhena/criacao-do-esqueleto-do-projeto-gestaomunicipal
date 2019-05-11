@@ -36,7 +36,7 @@
         <tbody>
             {% for rua in ruas_list %}
             <tr>
-                <td><a href="{% url 'cadastros:ruaSelecionada' rua.id %}">{{rua.nome}}</a></td>
+                <td><a href="{% url 'cadastros:ruaSelecionada' rua.id 'selecionar' %}">{{rua.nome}}</a></td>
                 <td>{{rua.idBairro.nome}}</td>
             </tr>
         </tbody>
