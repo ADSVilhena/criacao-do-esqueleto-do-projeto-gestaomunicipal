@@ -1,7 +1,7 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
@@ -69,7 +69,7 @@ def chamados(request,idEvento=None,idChamado='selecionar'):
         formChamado = ChamadosForm(request.POST)
         if formChamado.is_valid():
             formChamado.save()
-            return redirect('chamado:listar_chamados')
+            return HttpResponseRedirect(reverse('chamados:listar_chamados', kwargs={'pk': request.user.id}))
         else:
             return HttpResponse(formChamado.errors)
     else:
