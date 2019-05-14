@@ -25,7 +25,7 @@
                 <label for="idEndereco">Endereço</label>
                 <select class="form-control" id="idEndereco" name="idEndereco">
                     {% for endereco in meusEnderecos %}
-                    <option value="{{endereco.pk}}" {% if endereco.pk == formChamado.idEndereco.id %}
+                    <option value="{{endereco.pk}}" {% if endereco.pk == dados.idEndereco.id %}
                         selected="selected" {% endif %}>{{ endereco }}</option>
                     {% endfor %}
                 </select>
@@ -35,25 +35,32 @@
             <div class="form-group">
                 <label for="observacao">Observação</label>
                 <input type="text" class="form-control" id="observacao" name="observacao" placeholder="Observação"
-                    value="{{formChamado.observacao}}" />
+                    value="{{dados.observacao}}" />
             </div>
 
 
-            <div class="form-group">
+            <div class="d-none">
                 <label for="idStatus">Status</label>
                 <select class="form-control" id="idStatus" name="idStatus">
                     <option value="1">Aberto</option>
                 </select>
             </div>
 
-            <div class="">
+            <div class="d-none">
                 <label for="idPessoa">Usuário</label>
                 <select class="form-control" id="idPessoa" name="idPessoa">
                     <option value="{{user.pk}}">{{ user }}</option>
                 </select>
             </div>
+            <div class="d-none">
+                <label for="pk">PK</label>
+                <input type="text" class="form-control" id="pk" name="pk" placeholder="PK"
+                    value="{{dados.id}}" />
+            </div>
+    
             <input type="submit" class="btn btn-primary" value="Salvar">
         </form>
+
 
         {% else%}
 

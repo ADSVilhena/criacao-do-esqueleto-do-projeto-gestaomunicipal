@@ -66,14 +66,28 @@ def chamados(request,idEvento=None,idChamado='selecionar'):
     meusEnderecos = Endereco.objects.filter(idPessoa_id=request.user.id)
     evento = get_object_or_404(Eventos, pk=idEvento)
     if request.method == 'POST':
-        formChamado = ChamadosForm(request.POST)
-        if formChamado.is_valid():
-            formChamado.save()
-            return HttpResponseRedirect(reverse('chamados:listar_chamados', kwargs={'pk': request.user.id}))
+        if request.POST.get('pk'):
+            atualizar = get_object_or_404(Chamados, id=request.POST.get('pk'))
+            formChamado = ChamadosForm(request.POST, instance=atualizar)
         else:
-            return HttpResponse(formChamado.errors)
+            formChamado = ChamadosForm(request.POST)
+        if formChamado.is_valid():
+            if request.POST.get('idPessoa') == str(request.user.id):
+                formChamado.save()
+                return HttpResponseRedirect(reverse('chamados:listar_chamados', kwargs={'pk': request.user.id}))
+            else:
+                return HttpResponse(request.user.id)
+        else:
+            context = {'formChamado': formChamado}
+            return render(request, 'chamado/addChamado.html', context)
     else:
-        formChamado = ChamadosForm()
-        context = {'formChamado': formChamado, 'meusEnderecos': meusEnderecos, 'evento': evento}
-        return render(request, 'chamado/addChamado.html', context)
-        #return HttpResponse(evento.id)
+        if idChamado == 'selecionar':
+            formChamado = ChamadosForm()
+            context = {'formChamado': formChamado, 'meusEnderecos': meusEnderecos, 'evento': evento}
+            return render(request, 'chamado/addChamado.html', context)
+        else:
+            dados = get_object_or_404(Chamados, id=int(idChamado))
+            formChamado = ChamadosForm(instance=dados)
+            context = {'formChamado': formChamado, 'meusEnderecos': meusEnderecos, 'evento': evento, 'editando': 'yes', 'dados': dados}
+            return render(request, 'chamado/addChamado.html', context)
+

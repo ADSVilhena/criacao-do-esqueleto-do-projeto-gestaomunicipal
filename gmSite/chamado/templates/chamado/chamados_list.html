@@ -32,11 +32,11 @@
         <td>{{chamado.observacao}}</td>
         <td>{{chamado.idStatus.descricao}}</td>
 
-        <td><a class="btn btn-primary" href="{% url 'chamados:editar_chamado' chamado.id %}"{{chamado.id}}>Alterar</a></td>
+        <td><a class="btn btn-primary" href="{% url 'chamados:chamados' chamado.idEvento.id chamado.id %}"{{chamado.id}}>Editar</a></td>
     </tr>
     {% endfor %}
 </table>
-<a  class="btn btn-primary mt-2" href="{% url 'chamados:abrir_chamado' user.id %}">Abrir chamado</a>
+<a  class="btn btn-primary mt-2" href="{% url 'chamados:pesquisa' %}">Abrir chamado</a>
 
 {% else %}
 
@@ -44,7 +44,7 @@
         <div class="alert alert-danger mt-5">
                 Nenhum chamado para {{ user.first_name }} com esse filtro!
             </div>
-    <a class="btn btn-primary mt-2" href="{% url 'chamados:abrir_chamado' user.id %}">Abrir chamado</a>
+    <a class="btn btn-primary mt-2" href="{% url 'chamados:pesquisa' %}">Abrir chamado</a>
 
 </div>
 

@@ -36,7 +36,7 @@
         <tbody>
             {% for servico in servicos_list %}
             <tr>
-                <td><a href="{% url 'chamados:chamados' servico.id %}">{{ servico.descricao }}</a></td>
+                <td><a href="{% url 'chamados:chamados' servico.id 'selecionar' %}">{{ servico.descricao }}</a></td>
                 <td>{{servico.idOrgao}}</td>
             </tr>
         </tbody>
