@@ -130,7 +130,7 @@ def home_ajax_search(request, search_string=None):
     if search_string is None:
         ruas_list = Rua.objects.all()
     else:
-        ruas_list = Rua.objects.filter(nome__icontains=search_string)
+        ruas_list = Rua.objects.filter(nome__icontains=search_string) | Rua.objects.filter(idBairro__nome__icontains=search_string)
         paginator = Paginator(ruas_list, 9)
         page = request.GET.get('page')
         ruas_list = paginator.get_page(page)

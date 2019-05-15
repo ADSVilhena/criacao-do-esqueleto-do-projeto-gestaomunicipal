@@ -5,13 +5,14 @@ from .models import Endereco
 from .models import Eventos
 from .models import Status
 from .models import Chamados
+from orgao.models import Orgao
 
 
 # Register your models here.
 
 class ChamadoAdmin(admin.ModelAdmin):
     list_display = ('idPessoa', 'idEvento', 'idEndereco', 'idStatus', 'dataAbertura', 'dataFechamento', 'observacao')
-    list_filter = ['idStatus','idEndereco', 'idEvento', 'dataAbertura', 'dataFechamento']
+    list_filter = ['idStatus','idEndereco', 'idEvento', 'dataAbertura', 'dataFechamento','idEvento__idOrgao__nome']
 
 
 class StatusAdmin(admin.ModelAdmin):

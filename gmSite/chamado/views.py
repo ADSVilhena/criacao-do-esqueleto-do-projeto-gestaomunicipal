@@ -54,8 +54,7 @@ def home_ajax_search(request, search_string=None):
     if search_string is None:
         servicos_list = Eventos.objects.all()
     else:
-        servicos_list = Eventos.objects.filter(
-            descricao__icontains=search_string)
+        servicos_list = Eventos.objects.filter(descricao__icontains=search_string) | Eventos.objects.filter(idOrgao__nome__icontains=search_string)
         paginator = Paginator(servicos_list, 9)
         page = request.GET.get('page')
         servicos_list = paginator.get_page(page)
