@@ -68,26 +68,26 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a style="color: #212529"class="nav-link" href="{% url 'cadastros:atualizar' user.id %}">
-                                <span data-feather="users"style="color: #212529"></span>
+                            <a style="color: #212529" class="nav-link" href="{% url 'cadastros:atualizar' user.id %}">
+                                <span data-feather="users" style="color: #212529"></span>
                                 Atualizar Meus Dados
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a style="color: #212529"class="nav-link" href="{% url 'password_change' %}">
-                                <span data-feather="lock"style="color: #212529"></span>
+                            <a style="color: #212529" class="nav-link" href="{% url 'password_change' %}">
+                                <span data-feather="lock" style="color: #212529"></span>
                                 Trocar minha senha
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a style="color: #212529"class="nav-link" href="{% url 'cadastros:enderecosList'  %}">
-                                <span data-feather="map"style="color: #212529"></span>
+                            <a style="color: #212529" class="nav-link" href="{% url 'cadastros:enderecosList'  %}">
+                                <span data-feather="map" style="color: #212529"></span>
                                 Meus Endereços
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a style="color: #212529"class="nav-link" href="{% url 'cadastros:telefonesList'%}">
-                                <span data-feather="phone"style="color: #212529"></span>
+                            <a style="color: #212529" class="nav-link" href="{% url 'cadastros:telefonesList'%}">
+                                <span data-feather="phone" style="color: #212529"></span>
                                 Meus Telefones
                             </a>
                         </li>
@@ -96,36 +96,77 @@
 
                     <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span style="color: #212529;cursor:pointer;" >Meus Chamados</span>
-                        <a  style="color: #212529" class="d-flex align-items-center text-muted" href="{% url 'chamados:pesquisa' %}">
-                            <span data-feather="plus-circle"style="color: #212529"></span>
+                        <span style="color: #212529;cursor:pointer;">Meus Chamados</span>
+                        <a style="color: #212529" class="d-flex align-items-center text-muted"
+                            href="{% url 'chamados:pesquisa' %}">
+                            <span data-feather="plus-circle" style="color: #212529"></span>
                         </a>
                     </h6>
                     <ul class="nav flex-column mb-2">
                         <li class="nav-item">
-                            <a class="nav-link" style="color: #212529" href="{% url 'chamados:filtrar_chamados' user.id 1 %}">
-                                <span data-feather="file-text"style="color: #212529"></span>
+                            <a class="nav-link" style="color: #212529"
+                                href="{% url 'chamados:filtrar_chamados' user.id 1 %}">
+                                <span data-feather="file-text" style="color: #212529"></span>
                                 Abertos
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: #212529" href="{% url 'chamados:filtrar_chamados' user.id 2 %}">
+                            <a class="nav-link" style="color: #212529"
+                                href="{% url 'chamados:filtrar_chamados' user.id 2 %}">
                                 <span data-feather="file-text" style="color: #212529"></span>
                                 Em Andamento
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: #212529" href="{% url 'chamados:filtrar_chamados' user.id 3 %}">
+                            <a class="nav-link" style="color: #212529"
+                                href="{% url 'chamados:filtrar_chamados' user.id 3 %}">
                                 <span data-feather="file-text" style="color: #212529"></span>
                                 Concluídos
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: #212529" href="{% url 'chamados:listar_chamados' user.id %}">
+                            <a class="nav-link" style="color: #212529"
+                                href="{% url 'chamados:listar_chamados' user.id %}">
                                 <span data-feather="file-text" style="color: #212529"></span>
                                 Todos Os Chamados
                             </a>
                         </li>
+
+                        <div id="menuOrgao">
+                            <h6
+                                class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                                <span style="color: #212529;cursor:pointer;">Chamados userServidor</span>
+                                <a style="color: #212529" class="d-flex align-items-center text-muted" href="#">
+                                    <span data-feather="plus-circle" style="color: #212529"></span>
+                                </a>
+                            </h6>
+                            <ul class="nav flex-column mb-2">
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: #212529" href="#">
+                                        <span data-feather="file-text" style="color: #212529"></span>
+                                        Abertos
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: #212529" href="#">
+                                        <span data-feather="file-text" style="color: #212529"></span>
+                                        Em Andamento
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: #212529" href="#">
+                                        <span data-feather="file-text" style="color: #212529"></span>
+                                        Concluídos
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: #212529" href="#">
+                                        <span data-feather="file-text" style="color: #212529"></span>
+                                        Todos Os Chamados
+                                    </a>
+                                </li>
+                        </div>
+
 
                         {% else %}
 
@@ -205,7 +246,9 @@
                 <div class="carousel-inner">
                     <div class=" text-center carousel-item active  ">
                         <div style=" background: #212529; height: 190px;">
-                            <img src="{% static 'd.jpeg' %}" alt="fundo azul com duas cobras na cor branca escrito django" class="mt-2 img-fluid max-width: 100%">
+                            <img src="{% static 'd.jpeg' %}"
+                                alt="fundo azul com duas cobras na cor branca escrito django"
+                                class="mt-2 img-fluid max-width: 100%">
 
                             <div class="carousel-caption">
 
@@ -216,7 +259,8 @@
 
                     <div class=" text-center carousel-item">
                         <div style="background: #212529; height: 190px;">
-                            <img src="{% static 'download.png' %}" alt="django escrito na cor preta com o fundo branco" class=" mt-2 img-fluid max-width: 100%">
+                            <img src="{% static 'download.png' %}" alt="django escrito na cor preta com o fundo branco"
+                                class=" mt-2 img-fluid max-width: 100%">
 
                             <div class="carousel-caption">
 
@@ -227,7 +271,8 @@
 
                     <div class=" text-center carousel-item">
                         <div style="background: #212529;  height: 190px;">
-                            <img src="{% static 'python.png' %}" alt="imagem relacionando o python com o django" class="img-fluid max-width: 100%">
+                            <img src="{% static 'python.png' %}" alt="imagem relacionando o python com o django"
+                                class="img-fluid max-width: 100%">
 
                             <div class="carousel-caption">
 

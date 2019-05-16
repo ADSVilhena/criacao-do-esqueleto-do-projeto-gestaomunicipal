@@ -1,0 +1,57 @@
+{% extends "admin/base_main.html" %}
+{% block centro%}
+<title>Chamados do Órgão</title>
+<div class="">
+    <h3 class="text-center mt-3">Chamados</h3>
+</div>
+{% if chamados_list %}
+<table class="table mt-5">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">ÓRGÃO</th>
+            <th scope="col">SERVIÇO</th>
+            <th scope="col">PESSOA</th>
+            <th scope="col">ENDEREÇO</th>
+            <th scope="col">ABERTURA</th>
+            <th scope="col">FECHAMENTO</th>
+            <th scope="col">OBSERVAÇÃO</th>
+            <th scope="col">STATUS</th>
+            <th scope="col">AÇÃO</th>
+        </tr>
+    </thead>
+
+    {% for chamado in chamados_list %}
+    <tr>
+        <td>{{chamado.id}}</td>
+        <td>{{chamado.idEvento.idOrgao.nome}}</td>
+        <td>{{chamado.idEvento.descricao}}</td>
+        <td>{{chamado.idPessoa.first_name}}</td>
+        <td>{{chamado.idEndereco.idRua.nome}}, {{chamado.idEndereco.numero}} -
+            {{chamado.idEndereco.idRua.idBairro.nome}} </td>
+        <td>{{chamado.dataAbertura}}</td>
+        <td>{{chamado.dataFechamento}}</td>
+        <td>{{chamado.observacao}}</td>
+        <td>{{chamado.idStatus.descricao}}</td>
+
+        <td><a class="btn btn-primary" href="{% url 'chamados:chamados' chamado.idEvento.id chamado.id %}"
+                {{chamado.id}}>Alterar</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% else %}
+
+<div class="container text-center mt-5">
+    <div class="alert alert-danger mt-5">
+        Nenhum chamado para com esse filtro!
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock%}
+
+
+
