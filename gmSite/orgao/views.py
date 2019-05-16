@@ -7,7 +7,7 @@ from chamado.models import Chamados
 def retornaLotacao(request):
     lotacao = Lotacao.objects.filter(idPessoa=request.user.id)
     context = {'userServidor': lotacao}
-    return HttpResponseRedirect(reverse('testeHome'), context)
+    return render(request, 'gmSite/index.html', context)
 
 
 def chamadosOrgao(request, pkOrgao=None, pkStatus=None):

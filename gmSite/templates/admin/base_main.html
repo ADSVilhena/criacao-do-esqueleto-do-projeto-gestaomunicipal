@@ -131,41 +131,21 @@
                                 Todos Os Chamados
                             </a>
                         </li>
-
+                        {% if userServidor %}
                         <div id="menuOrgao">
-                            <h6
-                                class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                                <span style="color: #212529;cursor:pointer;">Chamados userServidor</span>
-                                <a style="color: #212529" class="d-flex align-items-center text-muted" href="#">
-                                    <span data-feather="plus-circle" style="color: #212529"></span>
-                                </a>
-                            </h6>
-                            <ul class="nav flex-column mb-2">
-                                <li class="nav-item">
-                                    <a class="nav-link" style="color: #212529" href="#">
-                                        <span data-feather="file-text" style="color: #212529"></span>
-                                        Abertos
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" style="color: #212529" href="#">
-                                        <span data-feather="file-text" style="color: #212529"></span>
-                                        Em Andamento
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" style="color: #212529" href="#">
-                                        <span data-feather="file-text" style="color: #212529"></span>
-                                        Concluídos
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" style="color: #212529" href="#">
-                                        <span data-feather="file-text" style="color: #212529"></span>
-                                        Todos Os Chamados
-                                    </a>
-                                </li>
+                            <form>
+                                <div class="">
+                                    <label for="idOrgao">Órgão</label>
+                                    <select class="form-control" id="idOrgao" name="idOrgao">
+                                        {% for v in userServidor %}
+                                        <option value="{{v.idOrgao.id}}">{{ v.idOrgao.nome }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <input type="submit"  class="btn btn-primary" value="Ir">
+                                </div>
+                            </form>
                         </div>
+                        {% endif %}
 
 
                         {% else %}
