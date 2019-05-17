@@ -133,7 +133,8 @@
                         </li>
                         {% if userServidor %}
                         <div id="menuOrgao">
-                            <form>
+                                {% csrf_token %}
+                            <form action="/orgao" method="GET">
                                 <div class="">
                                     <label for="idOrgao">Órgão</label>
                                     <select class="form-control" id="idOrgao" name="idOrgao">
@@ -155,7 +156,7 @@
                 </div>
             </nav>
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                {% block centro%}
+                {% block centro %}
 
                 {% if user.is_authenticated %}
                 <div id="carouselSite" class="carousel slide carousel-fade mt-1 " data-ride="carousel">
@@ -274,7 +275,7 @@
     </div>
 
     {% endif %}
-    {% endblock%}
+    {% endblock %}
 
 
     </main>

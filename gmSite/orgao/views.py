@@ -4,6 +4,15 @@ from django.urls import reverse_lazy, reverse
 from .models import Lotacao, Orgao, Eventos
 from chamado.models import Chamados
 # Create your views here.
+
+def index(request):
+    idOrgao = request.GET.get('idOrgao')
+    context = {'orgaoSelecionado': idOrgao}
+    return render(request, 'orgao/index.html', context)
+
+def gerenciarChamados(request):
+    return render(request, 'orgao/gerenciaChamados.html')
+
 def retornaLotacao(request):
     lotacao = Lotacao.objects.filter(idPessoa=request.user.id)
     context = {'userServidor': lotacao}
