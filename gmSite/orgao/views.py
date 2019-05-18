@@ -17,7 +17,10 @@ def retornaLotacao(request):
     lotacao = Lotacao.objects.filter(idPessoa=request.user.id)
     context = {'userServidor': lotacao}
     if request.method == 'POST':
-        request.session['vinculo'] = request.POST.get('idOrgao')
+        idOrgaoVinculo = request.POST.get('idOrgao')
+        orgaoVinculo = get_object_or_404(Orgao, pk=idOrgaoVinculo)
+        request.session['idVinculo'] = idOrgaoVinculo
+        request.session['nomeVinculo'] = orgaoVinculo.nome
         return redirect('testeHome')
     else:
         if len(lotacao) == 0:
