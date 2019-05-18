@@ -136,7 +136,45 @@
                             </a>
                         </li>
                         
-
+                        {% if request.session.nomeVinculo %}
+                        <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span style="color: #212529;cursor:pointer;">Chamados {{request.session.nomeVinculo}} </span>
+                        <a style="color: #212529" class="d-flex align-items-center text-muted"
+                            href="{% url 'chamados:pesquisa' %}">
+                            <span data-feather="plus-circle" style="color: #212529"></span>
+                        </a>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #212529"
+                                href="{% url 'orgao:chamados' request.session.idVinculo 1 %}">
+                                <span data-feather="file-text" style="color: #212529"></span>
+                                Abertos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #212529"
+                                href="{% url 'orgao:chamados' request.session.idVinculo 2 %}">
+                                <span data-feather="file-text" style="color: #212529"></span>
+                                Em Andamento
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #212529"
+                                href="{% url 'orgao:chamados' request.session.idVinculo 3 %}">
+                                <span data-feather="file-text" style="color: #212529"></span>
+                                Concluídos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #212529"
+                                href="{% url 'chamados:listar_chamados' user.id %}">
+                                <span data-feather="file-text" style="color: #212529"></span>
+                                Todos Os Chamados
+                            </a>
+                        </li>
+                        {% endif %}
 
 
                         {% else %}
