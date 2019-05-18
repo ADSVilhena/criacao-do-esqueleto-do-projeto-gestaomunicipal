@@ -25,7 +25,7 @@
 
 <body>
     <nav class="navbar navbar-dark  bg-dark flex-md-nowrap p-0 shadow navbar-expand-lg">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{% url 'testeHome' %}">Gestão Municipal</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{% url 'testeHome' %}"><h1>Gestão Municipal</h1></a>
         <div class="w-100"></div>
 
         <ul class="navbar-nav mr-auto">
@@ -55,22 +55,28 @@
 
                             <a class="nav">
                                 <span></span>
-                                <div style=" display: flex;">
+                                <div style=" display: flex;" class="mt-2">
                                     <div>
                                         <img style="width:60px;" src="{% static 'profile.svg' %}">
                                     </div>
                                     <div>
-                                        Olá,<br>{{ user.first_name }}! <span class="sr-only"></span>                           
+                                        Olá,<br>{{ user.first_name }}! <span class="sr-only"></span>
                                     </div>
                                 </div>
                             </a>
                         </li>
+                        {% if request.session.temVinculo %}
                         <li class="nav-item">
                             <a style="color: #212529" class="nav-link" href="{% url 'orgao:getLotacao' %}">
                                 <span data-feather="log-out" style="color: #212529"></span>
+                                {% if request.session.nomeVinculo %}
                                 Vínculo: {{ request.session.nomeVinculo }}
+                                {% else %}
+                                Vínculo: Não selecionado
+                                {% endif %}
                             </a>
                         </li>
+                        {% endif %}
                         <li class="nav-item">
                             <a style="color: #212529" class="nav-link" href="{% url 'cadastros:atualizar' user.id %}">
                                 <span data-feather="users" style="color: #212529"></span>
@@ -99,7 +105,7 @@
                     </ul>
 
                     <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted bg-info p-2">
                         <span style="color: #212529;cursor:pointer;">Meus Chamados</span>
                         <a style="color: #212529" class="d-flex align-items-center text-muted"
                             href="{% url 'chamados:pesquisa' %}">
@@ -135,52 +141,53 @@
                                 Todos Os Chamados
                             </a>
                         </li>
-                        
+
                         {% if request.session.nomeVinculo %}
                         <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span style="color: #212529;cursor:pointer;">Chamados {{request.session.nomeVinculo}} </span>
-                        <a style="color: #212529" class="d-flex align-items-center text-muted"
-                            href="{% url 'chamados:pesquisa' %}">
-                            <span data-feather="plus-circle" style="color: #212529"></span>
-                        </a>
-                    </h6>
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <a class="nav-link" style="color: #212529"
-                                href="{% url 'orgao:chamados' request.session.idVinculo 1 %}">
-                                <span data-feather="file-text" style="color: #212529"></span>
-                                Abertos
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted bg-info p-2">
+                            <span style="color: #212529;cursor:pointer;">Chamados {{request.session.nomeVinculo}}
+                            </span>
+                            <a style="color: #212529" class="d-flex align-items-center text-muted"
+                                href="{% url 'chamados:pesquisa' %}">
+                                <span data-feather="list" style="color: #212529"></span>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="color: #212529"
-                                href="{% url 'orgao:chamados' request.session.idVinculo 2 %}">
-                                <span data-feather="file-text" style="color: #212529"></span>
-                                Em Andamento
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="color: #212529"
-                                href="{% url 'orgao:chamados' request.session.idVinculo 3 %}">
-                                <span data-feather="file-text" style="color: #212529"></span>
-                                Concluídos
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="color: #212529"
-                                href="{% url 'orgao:chamados' request.session.idVinculo %}">
-                                <span data-feather="file-text" style="color: #212529"></span>
-                                Todos Os Chamados
-                            </a>
-                        </li>
-                        {% endif %}
+                        </h6>
+                        <ul class="nav flex-column mb-2">
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: #212529"
+                                    href="{% url 'orgao:chamados' request.session.idVinculo 1 %}">
+                                    <span data-feather="file-text" style="color: #212529"></span>
+                                    Abertos
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: #212529"
+                                    href="{% url 'orgao:chamados' request.session.idVinculo 2 %}">
+                                    <span data-feather="file-text" style="color: #212529"></span>
+                                    Em Andamento
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: #212529"
+                                    href="{% url 'orgao:chamados' request.session.idVinculo 3 %}">
+                                    <span data-feather="file-text" style="color: #212529"></span>
+                                    Concluídos
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: #212529"
+                                    href="{% url 'orgao:chamados' request.session.idVinculo %}">
+                                    <span data-feather="file-text" style="color: #212529"></span>
+                                    Todos Os Chamados
+                                </a>
+                            </li>
+                            {% endif %}
 
 
-                        {% else %}
+                            {% else %}
 
-                        {% endif %}
-                    </ul>
+                            {% endif %}
+                        </ul>
                 </div>
             </nav>
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">

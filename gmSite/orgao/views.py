@@ -26,6 +26,7 @@ def retornaLotacao(request):
         if len(lotacao) == 0:
             return render(request, 'gmSite/index.html', context)
         else:
+            request.session['temVinculo'] = 'yes'
             return render(request, 'orgao/escolheVinculo.html', context)
     return HttpResponse(request.POST.get('idOrgao'))
 
