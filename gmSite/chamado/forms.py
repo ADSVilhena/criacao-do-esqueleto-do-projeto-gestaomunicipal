@@ -6,3 +6,7 @@ class ChamadosForm(forms.ModelForm):
         model = Chamados
         fields = '__all__'
 
+class ChamadosAlteraForm(forms.ModelForm):
+    class Meta:
+        model = Chamados
+        fields = ['id','idStatus',]

@@ -34,7 +34,7 @@
         <td>{{chamado.observacao}}</td>
         <td>{{chamado.idStatus.descricao}}</td>
 
-        <td><a class="btn btn-primary" href="{% url 'chamados:chamados' chamado.idEvento.id chamado.id %}"
+        <td><a class="btn btn-primary" href="{% url 'orgao:gerenciarChamados' chamado.id %}"
                 {{chamado.id}}>Alterar</a></td>
     </tr>
     {% endfor %}

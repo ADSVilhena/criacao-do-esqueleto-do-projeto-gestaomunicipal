@@ -9,5 +9,5 @@ urlpatterns = [
     path('getLotacao/', views.retornaLotacao, name='getLotacao'),
     path('chamados/<str:pkOrgao>/<str:pkStatus>/', views.chamadosOrgao, name='chamados'),
     path('chamados/<str:pkOrgao>/', views.chamadosOrgao, name='chamados'),
-    path('chamados/gerenciar', views.gerenciarChamados, name='gerenciarChamados')
+    path('gerenciar/chamado/<str:pkChamado>/', views.gerenciarChamados, name='gerenciarChamados'),
 ]
