@@ -35,6 +35,7 @@ def chamadosOrgao(request, pkOrgao=None, pkStatus=None):
         chamado = Chamados.objects.filter(idStatus=pkStatus,idEvento__idOrgao=pkOrgao)
         context = {'chamados_list': chamado}
         return render(request, 'orgao/chamadosOrgao.html', context)
-
     else:
-        return HttpResponse("vixi")
+        chamado = Chamados.objects.filter(idEvento__idOrgao=pkOrgao)
+        context = {'chamados_list': chamado}
+        return render(request, 'orgao/chamadosOrgao.html', context)

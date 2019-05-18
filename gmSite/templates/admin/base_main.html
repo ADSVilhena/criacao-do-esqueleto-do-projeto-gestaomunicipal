@@ -169,7 +169,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" style="color: #212529"
-                                href="{% url 'chamados:listar_chamados' user.id %}">
+                                href="{% url 'orgao:chamados' request.session.idVinculo %}">
                                 <span data-feather="file-text" style="color: #212529"></span>
                                 Todos Os Chamados
                             </a>
