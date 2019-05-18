@@ -13,10 +13,18 @@ def index(request):
 def gerenciarChamados(request):
     return render(request, 'orgao/gerenciaChamados.html')
 
-def retornaLotacao(request):
+def retornaLotacao(request):    
     lotacao = Lotacao.objects.filter(idPessoa=request.user.id)
     context = {'userServidor': lotacao}
-    return render(request, 'gmSite/index.html', context)
+    if request.method == 'POST':
+        request.session['vinculo'] = request.POST.get('idOrgao')
+        return redirect('testeHome')
+    else:
+        if len(lotacao) == 0:
+            return render(request, 'gmSite/index.html', context)
+        else:
+            return render(request, 'orgao/escolheVinculo.html', context)
+    return HttpResponse(request.POST.get('idOrgao'))
 
 
 def chamadosOrgao(request, pkOrgao=None, pkStatus=None):

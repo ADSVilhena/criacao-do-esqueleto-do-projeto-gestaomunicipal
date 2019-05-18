@@ -26,8 +26,7 @@
 <body>
     <nav class="navbar navbar-dark  bg-dark flex-md-nowrap p-0 shadow navbar-expand-lg">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{% url 'testeHome' %}">Gestão Municipal</a>
-        <input class="form-control  ml-5 form-control-dark w-100" type="text" placeholder="Pesquisar"
-            aria-label="Search">
+        <div class="w-100"></div>
 
         <ul class="navbar-nav mr-auto">
             {% if user.is_authenticated %}
@@ -131,22 +130,7 @@
                                 Todos Os Chamados
                             </a>
                         </li>
-                        {% if userServidor %}
-                        <div id="menuOrgao">
-                                {% csrf_token %}
-                            <form action="/orgao" method="GET">
-                                <div class="">
-                                    <label for="idOrgao">Órgão</label>
-                                    <select class="form-control" id="idOrgao" name="idOrgao">
-                                        {% for v in userServidor %}
-                                        <option value="{{v.idOrgao.id}}">{{ v.idOrgao.nome }}</option>
-                                        {% endfor %}
-                                    </select>
-                                    <input type="submit"  class="btn btn-primary" value="Ir">
-                                </div>
-                            </form>
-                        </div>
-                        {% endif %}
+
 
 
                         {% else %}
