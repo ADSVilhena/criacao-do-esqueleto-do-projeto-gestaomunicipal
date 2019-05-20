@@ -23,7 +23,7 @@ class Chamados(models.Model):
     idEndereco = models.ForeignKey(Endereco, on_delete=models.CASCADE,verbose_name="ENDEREÇO")
     idStatus = models.ForeignKey(Status, on_delete=models.CASCADE,verbose_name="STATUS",default='1')
     dataAbertura = models.DateField('ABERTO EM',auto_now_add=True)
-    dataFechamento = models.DateField('CONCLUÍDO EM',default=None, blank=True, null=True)
+    dataFechamento = models.DateField('CONCLUÍDO EM',auto_now=True)
     observacao = models.CharField('OBSERVAÇÃO',max_length=200)
 
     def __str__(self):
