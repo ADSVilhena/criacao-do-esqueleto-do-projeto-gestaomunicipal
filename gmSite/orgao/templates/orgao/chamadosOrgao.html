@@ -8,8 +8,6 @@
 <table class="table mt-5">
     <thead>
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">ÓRGÃO</th>
             <th scope="col">SERVIÇO</th>
             <th scope="col">PESSOA</th>
             <th scope="col">ENDEREÇO</th>
@@ -23,8 +21,6 @@
 
     {% for chamado in chamados_list %}
     <tr>
-        <td>{{chamado.id}}</td>
-        <td>{{chamado.idEvento.idOrgao.nome}}</td>
         <td>{{chamado.idEvento.descricao}}</td>
         <td>{{chamado.idPessoa.first_name}}</td>
         <td>{{chamado.idEndereco.idRua.nome}}, {{chamado.idEndereco.numero}} -
