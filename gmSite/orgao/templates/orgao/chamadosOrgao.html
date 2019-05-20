@@ -30,7 +30,12 @@
         <td>{{chamado.idEndereco.idRua.nome}}, {{chamado.idEndereco.numero}} -
             {{chamado.idEndereco.idRua.idBairro.nome}} </td>
         <td>{{chamado.dataAbertura}}</td>
-        <td>{{chamado.dataFechamento}}</td>
+        <td>
+            {% if chamado.dataFechamento == None %}
+            {% else %}
+            {{chamado.dataFechamento}}
+            {% endif %}
+        </td>
         <td>{{chamado.observacao}}</td>
         <td>{{chamado.idStatus.descricao}}</td>
 

@@ -8,15 +8,15 @@
 <table class="table mt-5">
     <thead>
         <tr>
-            <th  scope="col">ID</th>
-            <th  scope="col">ÓRGÃO</th>
-            <th  scope="col">SERVIÇO</th>
-            <th  scope="col">ENDEREÇO</th>
-            <th  scope="col">ABERTURA</th>
-            <th  scope="col">ATUALIZADO EM</th>
-            <th  scope="col">OBSERVAÇÃO</th>
+            <th scope="col">ID</th>
+            <th scope="col">ÓRGÃO</th>
+            <th scope="col">SERVIÇO</th>
+            <th scope="col">ENDEREÇO</th>
+            <th scope="col">ABERTURA</th>
+            <th scope="col">ATUALIZADO EM</th>
+            <th scope="col">OBSERVAÇÃO</th>
             <th scope="col">STATUS</th>
-            <th  scope="col">AÇÃO</th>
+            <th scope="col">AÇÃO</th>
         </tr>
     </thead>
 
@@ -28,28 +28,35 @@
         <td>{{chamado.idEndereco.idRua.nome}}, {{chamado.idEndereco.numero}} -
             {{chamado.idEndereco.idRua.idBairro.nome}} </td>
         <td>{{chamado.dataAbertura}}</td>
-        <td>{{chamado.dataFechamento}}</td>
+        <td>
+            {% if chamado.dataFechamento == None %}
+            {% else %}
+            {{chamado.dataFechamento}}
+            {% endif %}
+        </td>
         <td>{{chamado.observacao}}</td>
         <td>{{chamado.idStatus.descricao}}</td>
 
         <td>
             {% if chamado.idStatus.pk == 1 %}
-            <a class="btn btn-primary" href="{% url 'chamados:chamados' chamado.idEvento.id chamado.id %}"{{chamado.id}} >Editar</a>
+            <a class="btn btn-primary" href="{% url 'chamados:chamados' chamado.idEvento.id chamado.id %}"
+                {{chamado.id}}>Editar</a>
             {% else %}
-            <a class="btn btn-primary disabled" href="{% url 'chamados:chamados' chamado.idEvento.id chamado.id %}"{{chamado.id}} >Editar</a>
+            <a class="btn btn-primary disabled" href="{% url 'chamados:chamados' chamado.idEvento.id chamado.id %}"
+                {{chamado.id}}>Editar</a>
             {% endif %}
         </td>
     </tr>
     {% endfor %}
 </table>
-<a  class="btn btn-primary mt-2" href="{% url 'chamados:pesquisa' %}">Abrir chamado</a>
+<a class="btn btn-primary mt-2" href="{% url 'chamados:pesquisa' %}">Abrir chamado</a>
 
 {% else %}
 
 <div class="container text-center mt-5">
-        <div class="alert alert-danger mt-5">
-                Nenhum chamado para {{ user.first_name }} com esse filtro!
-            </div>
+    <div class="alert alert-danger mt-5">
+        Nenhum chamado para {{ user.first_name }} com esse filtro!
+    </div>
     <a class="btn btn-primary mt-2" href="{% url 'chamados:pesquisa' %}">Abrir chamado</a>
 
 </div>
