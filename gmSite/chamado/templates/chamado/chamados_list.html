@@ -32,7 +32,13 @@
         <td>{{chamado.observacao}}</td>
         <td>{{chamado.idStatus.descricao}}</td>
 
-        <td><a class="btn btn-primary" href="{% url 'chamados:chamados' chamado.idEvento.id chamado.id %}"{{chamado.id}}>Editar</a></td>
+        <td>
+            {% if chamado.idStatus.pk == 1 %}
+            <a class="btn btn-primary" href="{% url 'chamados:chamados' chamado.idEvento.id chamado.id %}"{{chamado.id}} >Editar</a>
+            {% else %}
+            <a class="btn btn-primary disabled" href="{% url 'chamados:chamados' chamado.idEvento.id chamado.id %}"{{chamado.id}} >Editar</a>
+            {% endif %}
+        </td>
     </tr>
     {% endfor %}
 </table>
