@@ -18,15 +18,22 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link href=" https://fonts.googleapis.com/css?family=Lobster " rel=" stylesheet ">
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet">
 </head>
 
 <body>
     <nav class="navbar navbar-dark  bg-dark flex-md-nowrap p-0 shadow navbar-expand-lg">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{% url 'testeHome' %}"><h1>Gestão Municipal</h1></a>
-        <div class="w-100"></div>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" style="font-family: Lobster, cursive"
+            href="{% url 'testeHome' %}">
+            <h1>Gestão Municipal</h1>
+        </a>
+        <div class="w-100">
+            <a>
+
+            </a>
+        </div>
 
         <ul class="navbar-nav mr-auto">
             {% if user.is_authenticated %}
@@ -191,9 +198,9 @@
                 </div>
             </nav>
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
                 {% block centro %}
 
-                {% if user.is_authenticated %}
                 <div id="carouselSite" class="carousel slide carousel-fade mt-1 " data-ride="carousel">
 
                     <ol class="carousel-indicators">
@@ -249,73 +256,13 @@
                 </div>
         </div>
 
-        {% else%}
-        <div id="carouselSite" class="carousel slide carousel-fade mt-1" data-ride="carousel">
-
-            <ol class="carousel-indicators">
-                <li data-target="#carouselSite" data-slide-to="0" active></li>
-                <li data-target="#carouselSite" data-slide-to="1"></li>
-                <li data-target="#carouselSite" data-slide-to="2"></li>
-            </ol>
-
-            <div>
-                <div class="carousel-inner">
-                    <div class=" text-center carousel-item active  ">
-                        <div style=" background: #212529; height: 190px;">
-                            <img src="{% static 'd.jpeg' %}"
-                                alt="fundo azul com duas cobras na cor branca escrito django"
-                                class="mt-2 img-fluid max-width: 100%">
-
-                            <div class="carousel-caption">
-
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class=" text-center carousel-item">
-                        <div style="background: #212529; height: 190px;">
-                            <img src="{% static 'download.png' %}" alt="django escrito na cor preta com o fundo branco"
-                                class=" mt-2 img-fluid max-width: 100%">
-
-                            <div class="carousel-caption">
-
-                            </div>
-                        </div>
-                    </div>
+        {% endblock %}
 
 
-                    <div class=" text-center carousel-item">
-                        <div style="background: #212529;  height: 190px;">
-                            <img src="{% static 'python.png' %}" alt="imagem relacionando o python com o django"
-                                class="img-fluid max-width: 100%">
+        </main>
 
-                            <div class="carousel-caption">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <a class="carousel-control-prev" href="#carouselSite" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                    <span class="sr-only">Anterior</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselSite" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                    <span class="sr-only">Próximo</span>
-                </a>
-            </div>
-        </div>
     </div>
-
-    {% endif %}
-    {% endblock %}
-
-
-    </main>
-    </div>
-    </div>
+ 
 
     <!---<footer class="site-footer" style=" position: fixed; width: 100%; height:50px; background: #343a40;">
         <p class="text-center text-light pt-2 ">© Todos os direitos reservados-2020 </p>
@@ -379,10 +326,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
-
-
-
 </body>
 
 
