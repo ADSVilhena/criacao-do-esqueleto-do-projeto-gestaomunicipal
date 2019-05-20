@@ -9,4 +9,4 @@ class ChamadosForm(forms.ModelForm):
 class ChamadosAlteraForm(forms.ModelForm):
     class Meta:
         model = Chamados
-        fields = ['id','idStatus',]
+        fields = ['id','idStatus','observacaoOrgao']

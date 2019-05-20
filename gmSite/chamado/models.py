@@ -25,6 +25,7 @@ class Chamados(models.Model):
     dataAbertura = models.DateField('ABERTO EM',auto_now_add=True)
     dataFechamento = models.DateField('CONCLUÍDO EM',auto_now=True)
     observacao = models.CharField('OBSERVAÇÃO',max_length=200)
+    observacaoOrgao = models.CharField('RETORNO DO ÓRGÃO', max_length=500, null=True, blank=True)
 
     def __str__(self):
         return self.idPessoa.first_name + " - " + self.idEvento.descricao + " - " + self.idEndereco.idRua.nome + " - " + self.idEndereco.numero

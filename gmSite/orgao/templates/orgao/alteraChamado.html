@@ -10,37 +10,37 @@
     <div class="mt-3">
         {% if user.is_authenticated %}
         <div class="form-group">
-                <label for="abertoPor">Aberto por</label>
-                <input type="text" class="form-control" id="abertoPor" name="abertoPor" placeholder="abertoPor"
-                    value="{{chamado.idPessoa}}" disabled />
-            </div>
-            <div class="form-group">
-                <label for="abertoEm">Data da abertura</label>
-                <input type="text" class="form-control" id="abertoEm" name="abertoEm" placeholder="abertoEm"
-                    value="{{chamado.dataAbertura}}" disabled />
-            </div>
-            <div class="form-group">
-                <label for="endereco">Endereço</label>
-                <input type="text" class="form-control" id="endereco" name="endereco" placeholder="endereco"
-                    value="{{chamado.idEndereco}}" disabled />
-            </div>
-            <div class="form-group">
-                <label for="observacao">Observação</label>
-                <input type="text" class="form-control" id="observacao" name="observacao" placeholder="observacao"
-                    value="{{chamado.observacao}}" disabled />
-            </div>
+            <label for="abertoPor">Aberto por</label>
+            <input type="text" class="form-control" id="abertoPor" name="abertoPor" placeholder="abertoPor"
+                value="{{chamado.idPessoa}}" disabled />
+        </div>
+        <div class="form-group">
+            <label for="abertoEm">Data da abertura</label>
+            <input type="text" class="form-control" id="abertoEm" name="abertoEm" placeholder="abertoEm"
+                value="{{chamado.dataAbertura}}" disabled />
+        </div>
+        <div class="form-group">
+            <label for="endereco">Endereço</label>
+            <input type="text" class="form-control" id="endereco" name="endereco" placeholder="endereco"
+                value="{{chamado.idEndereco}}" disabled />
+        </div>
+        <div class="form-group">
+            <label for="observacao">Observação</label>
+            <input type="text" class="form-control" id="observacao" name="observacao" placeholder="observacao"
+                value="{{chamado.observacao}}" disabled />
+        </div>
         <form method="POST">
             {% csrf_token %}
 
- 
+
 
 
             <div class="form-group">
                 <label for="idStatus">Status</label>
                 <select class="form-control" id="idStatus" name="idStatus">
                     {% for status in statusDb %}
-                    <option value="{{status.pk}}"{% if status.pk == chamado.idStatus.id %}
-                    selected="selected" {% endif %}>{{ status }}</option>
+                    <option value="{{status.pk}}" {% if status.pk == chamado.idStatus.id %} selected="selected"
+                        {% endif %}>{{ status }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -54,6 +54,11 @@
             <div class="d-none">
                 <label for="id">PK</label>
                 <input type="text" class="form-control" id="id" name="id" placeholder="id" value="{{chamado.pk}}" />
+            </div>
+            <div class="form-group">
+                <label for="observacaoOrgao">Observação</label>
+                <input type="text" class="form-control" id="observacaoOrgao" name="observacaoOrgao"
+                    placeholder="Observação" value="{{chamado.observacaoOrgao}}" />
             </div>
 
 

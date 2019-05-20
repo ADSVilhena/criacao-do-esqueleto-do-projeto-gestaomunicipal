@@ -15,6 +15,7 @@
             <th scope="col">ATUALIZADO EM</th>
             <th scope="col">OBSERVAÇÃO</th>
             <th scope="col">STATUS</th>
+            <th scope="col">RESP. ÓRGÃO</th>
             <th scope="col">AÇÃO</th>
         </tr>
     </thead>
@@ -35,6 +36,12 @@
         </td>
         <td>{{chamado.observacao}}</td>
         <td>{{chamado.idStatus.descricao}}</td>
+        <td>
+            {% if chamado.observacaoOrgao == None %}
+            {% else %}
+            {{chamado.observacaoOrgao}}
+            {% endif %}
+        </td>
 
         <td>
             {% if chamado.idStatus.pk == 1 %}
