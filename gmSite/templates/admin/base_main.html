@@ -24,7 +24,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark  bg-dark flex-md-nowrap p-0 shadow navbar-expand-lg">
+    <nav class="navbar navbar-dark  bg-primary flex-md-nowrap p-0 shadow navbar-expand-lg">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" style="font-family: Lobster, cursive"
             href="{% url 'testeHome' %}">
             <h1>Gestão Municipal</h1>
@@ -50,19 +50,17 @@
         </ul>
     </nav>
 
-    <div class="container-fluid">
+    <div class="mt-2">
         <div class="row">
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                 {% if user.is_authenticated %}
 
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
-                        <li class="nav-item bg-info">
-
-
+                        <li class="nav-item bg-primary text-white">
                             <a class="nav">
                                 <span></span>
-                                <div style=" display: flex;" class="mt-2">
+                                <div style=" display: flex;" class="mt-2 ">
                                     <div>
                                         <img style="width:60px;" src="{% static 'profile.svg' %}">
                                     </div>
@@ -112,8 +110,8 @@
                     </ul>
 
                     <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted bg-info p-2">
-                        <span style="color: #212529;cursor:pointer;">Meus Chamados</span>
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted bg-primary text-white p-2">
+                        <span style="color: white; cursor:pointer;">Meus Chamados</span>
                         <a style="color: #212529" class="d-flex align-items-center text-muted"
                             href="{% url 'chamados:pesquisa' %}">
                             <span data-feather="plus-circle" style="color: #212529"></span>
@@ -151,10 +149,10 @@
 
                         {% if request.session.nomeVinculo %}
                         <h6
-                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted bg-info p-2">
-                            <span style="color: #212529;cursor:pointer;">Chamados {{request.session.nomeVinculo}}
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1  bg-primary text-white p-2">
+                            <span style="cursor:pointer;">Chamados {{request.session.nomeVinculo}}
                             </span>
-                            <a style="color: #212529" class="d-flex align-items-center text-muted"
+                            <a  class="d-flex align-items-center "
                                 href="{% url 'chamados:pesquisa' %}">
                                 <span data-feather="list" style="color: #212529"></span>
                             </a>
@@ -212,8 +210,8 @@
                     <div>
                         <div class="carousel-inner">
                             <div class=" text-center carousel-item active  ">
-                                <div style=" background: #212529; height: 190px;">
-                                    <img src="{% static 'd.jpeg' %}" class="mt-2 img-fluid max-width: 100%">
+                                <div style=" background: #212529; height: 300px;">
+                                    <img src="{% static 'vilhena3.jpg' %}" class="mt-2 img-fluid max-width: 100% height:auto">
 
                                     <div class="carousel-caption">
 
@@ -223,8 +221,8 @@
                             </div>
 
                             <div class=" text-center carousel-item">
-                                <div style="background: #212529; height: 190px;">
-                                    <img src="{% static 'download.png' %}" class=" mt-2 img-fluid max-width: 100%">
+                                <div style="background: #212529; height: 300px;">
+                                    <img src="{% static 'semosp3.jpeg' %}" class=" mt-2 img-fluid max-width: 100% height:auto">
 
                                     <div class="carousel-caption">
 
@@ -234,8 +232,8 @@
 
 
                             <div class=" text-center carousel-item">
-                                <div style="background: #212529;  height: 190px;">
-                                    <img src="{% static 'python.png' %}" class="img-fluid max-width: 100%">
+                                <div style="background: #212529;  height: 300px;">
+                                    <img src="{% static 'vilhena.jpg' %}" class=" mt-2 img-fluid max-width: 100% height:auto">
 
                                     <div class="carousel-caption">
 
